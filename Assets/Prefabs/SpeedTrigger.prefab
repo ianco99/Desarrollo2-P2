@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrigger: {fileID: 5648421710985104211}
-  speedBoost: 450
+  speedBoost: 45
 --- !u!33 &5648421710985104175
 MeshFilter:
   m_ObjectHideFlags: 0
