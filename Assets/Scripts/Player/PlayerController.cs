@@ -103,6 +103,11 @@ public class PlayerController : MonoBehaviour
         playerCharacter.LaunchAttack();
     }
 
+    private void OnHook(InputValue inputValue)
+    {
+        playerCharacter.TryHook();
+    }
+
     /// <summary>
     /// Gets closest transform from a list
     /// </summary>

@@ -157,6 +157,11 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         characterAttacking = false;
     }
 
+    public void TryHook()
+    {
+
+    }
+
     /// <summary>
     /// Speed adder for player rigidbody
     /// </summary>

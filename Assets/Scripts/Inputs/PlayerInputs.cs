@@ -64,6 +64,15 @@ namespace Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Hook"",
+                    ""type"": ""Button"",
+                    ""id"": ""6cb14230-d748-4547-867d-790a4825f5af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -180,7 +189,7 @@ namespace Inputs
                 {
                     ""name"": """",
                     ""id"": ""466f0205-0595-4765-b070-37be2617e659"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -207,6 +216,28 @@ namespace Inputs
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""155a2978-174d-4e1c-b0a9-a58d8b5bc627"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""caea2de9-6716-4257-8bdb-d479c17265d7"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -377,6 +408,7 @@ namespace Inputs
             m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
             m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
             m_World_Pause = m_World.FindAction("Pause", throwIfNotFound: true);
+            m_World_Hook = m_World.FindAction("Hook", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_Selection = m_Menu.FindAction("Selection", throwIfNotFound: true);
@@ -447,6 +479,7 @@ namespace Inputs
         private readonly InputAction m_World_Jump;
         private readonly InputAction m_World_Attack;
         private readonly InputAction m_World_Pause;
+        private readonly InputAction m_World_Hook;
         public struct WorldActions
         {
             private @PlayerInputs m_Wrapper;
@@ -455,6 +488,7 @@ namespace Inputs
             public InputAction @Jump => m_Wrapper.m_World_Jump;
             public InputAction @Attack => m_Wrapper.m_World_Attack;
             public InputAction @Pause => m_Wrapper.m_World_Pause;
+            public InputAction @Hook => m_Wrapper.m_World_Hook;
             public InputActionMap Get() { return m_Wrapper.m_World; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -476,6 +510,9 @@ namespace Inputs
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Hook.started += instance.OnHook;
+                @Hook.performed += instance.OnHook;
+                @Hook.canceled += instance.OnHook;
             }
 
             private void UnregisterCallbacks(IWorldActions instance)
@@ -492,6 +529,9 @@ namespace Inputs
                 @Pause.started -= instance.OnPause;
                 @Pause.performed -= instance.OnPause;
                 @Pause.canceled -= instance.OnPause;
+                @Hook.started -= instance.OnHook;
+                @Hook.performed -= instance.OnHook;
+                @Hook.canceled -= instance.OnHook;
             }
 
             public void RemoveCallbacks(IWorldActions instance)
@@ -577,6 +617,7 @@ namespace Inputs
             void OnJump(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
+            void OnHook(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {
