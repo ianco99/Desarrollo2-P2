@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78876d654d1d664abc84b50c9fe825a, type: 3}
   m_Name: PlayerSettingsData
   m_EditorClassIdentifier: 
-  speed: 16
+  speed: 30
   coyoteTargetTime: 0.3
   jumpForce: 15
   maxHorVelocity: 50
@@ -22,4 +22,4 @@ MonoBehaviour:
   targetLowJumpTimer: 0.1
   launchAttackDetectRadius: 9.82
   ExternLaunchAttackDetectRadius: 11
-  launchAttackForce: 400
+  launchAttackForce: 40

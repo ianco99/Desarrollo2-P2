@@ -151,7 +151,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
             other.gameObject.GetComponentInParent<ITargetable>()?.SetTargettedState(false);
             other.gameObject.GetComponentInParent<IAttackable>()?.ReceiveAttack();
         }
-        rb.AddForce(Vector3.up * 200, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * 20, ForceMode.Impulse);
 
         attackTarget = null;
         characterAttacking = false;
