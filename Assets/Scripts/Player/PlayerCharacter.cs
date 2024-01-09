@@ -8,6 +8,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     [SerializeField] private Rigidbody rb;
 
     private Transform attackTarget;
+    private SpringJoint hookJoint;
 
     private bool characterGrounded;
     private bool characterJumping;
@@ -157,7 +158,20 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         characterAttacking = false;
     }
 
-    public void TryHook()
+    /// <summary>
+    /// Adds joint component
+    /// </summary>
+    public void StartHook()
+    {
+        hookJoint = rb.gameObject.AddComponent<SpringJoint>();
+
+        //hookJoint.bod
+    }
+
+    /// <summary>
+    /// Deletes joint component
+    /// </summary>
+    public void StopHook()
     {
 
     }

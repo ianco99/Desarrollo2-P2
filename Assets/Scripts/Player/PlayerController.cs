@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerCharacter playerCharacter;
 
     private Vector2 moveInput;
+    private bool hooking = false;
 
     public PlayerCharacter PlayerCharacter
     {
@@ -74,6 +75,33 @@ public class PlayerController : MonoBehaviour
             playerCharacter.SetAttackTarget(null);
     }
 
+    private void CheckNearbyHookPoints()
+    {
+        List<Transform> enemies = new List<Transform>();
+        foreach (Collider coll in Physics.OverlapSphere(launchAttackPoint.position, settings.ExternLaunchAttackDetectRadius))
+        {
+            if (coll.GetComponentInParent<IAttackable>() != null)
+            {
+
+                if (Vector3.Distance(coll.transform.position, launchAttackPoint.position) <= settings.launchAttackDetectRadius)
+                    enemies.Add(coll.transform);
+                else
+                    coll.GetComponentInParent<ITargetable>()?.SetTargettedState(false);
+            }
+        }
+
+        if (enemies.Count > 0)
+        {
+            Transform newTarget = GetClosest(enemies);
+
+            newTarget.gameObject.GetComponentInParent<ITargetable>()?.SetTargettedState(true);
+
+            playerCharacter.SetAttackTarget(newTarget);
+        }
+        else
+            playerCharacter.SetAttackTarget(null);
+    }
+
     /// <summary>
     /// On move input
     /// </summary>
@@ -103,9 +131,28 @@ public class PlayerController : MonoBehaviour
         playerCharacter.LaunchAttack();
     }
 
+    /// <summary>
+    /// On hook input
+    /// </summary>
+    /// <param name="inputValue"></param>
     private void OnHook(InputValue inputValue)
     {
-        playerCharacter.TryHook();
+        Debug.Log("Hook input");
+        //bool value = inputValue.Get<bool>();
+
+        //if (hooking != value)
+        //{
+        //    if (hooking)
+        //    {
+
+        //    }
+        //    else
+        //    {
+        //        playerCharacter.StartHook();
+        //    }
+        //}
+        //hooking = value;
+
     }
 
     /// <summary>
