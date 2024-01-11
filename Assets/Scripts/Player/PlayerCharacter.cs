@@ -120,12 +120,13 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         if (characterAttacking || attackTarget == null)
             return;
 
-        rb.rotation = Quaternion.Euler(Vector3.zero);
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
-        Vector3 destination = attackTarget.position - rb.transform.position;
+
+        Vector3 destination = attackTarget.position - transform.position;
         destination = destination.normalized;
-        rb.AddRelativeForce(destination * playerSettings.launchAttackForce, ForceMode.Impulse);
+        rb.AddForce(destination * playerSettings.launchAttackForce, ForceMode.Impulse);
+        rb.AddTorque(destination, ForceMode.Impulse);
     }
 
     /// <summary>
@@ -145,13 +146,13 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         rb.useGravity = true;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.rotation = Quaternion.Euler(Vector3.zero);
 
         if (other != null)
         {
             other.gameObject.GetComponentInParent<ITargetable>()?.SetTargettedState(false);
             other.gameObject.GetComponentInParent<IAttackable>()?.ReceiveAttack();
         }
+
         rb.AddForce(Vector3.up * 20, ForceMode.Impulse);
 
         attackTarget = null;
