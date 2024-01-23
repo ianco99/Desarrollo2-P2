@@ -15,9 +15,11 @@ public class PlayerSettings : ScriptableObject
     public float lowJumpMultiplier = 5.0f;
     public float targetLowJumpTimer = 1.0f;
 
+    [Header("DetectionSettings")]
+    public float insideDetectionRadius;
+    public float OutsideDetectionRadius;
+
     [Header("AttackSettings")]
-    public float launchAttackDetectRadius;
-    public float ExternLaunchAttackDetectRadius;
     public float launchAttackForce = 200.0f;
 
 }

@@ -166,7 +166,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     {
         hookJoint = rb.gameObject.AddComponent<SpringJoint>();
 
-        //hookJoint.bod
+        
     }
 
     /// <summary>
