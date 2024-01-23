@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Player class in charge of processing input and controlling player's behaviour
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [Tooltip("Point from which sphere cast starts in order to detect enemies")]
-    [SerializeField] private Transform launchAttackPoint;
+    [SerializeField] private Transform detectionPoint;
     [Tooltip("Point for the camera to focus on")]
     [SerializeField] private Transform cameraPoint;
     [SerializeField] private PlayerSettings settings;
@@ -14,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerCharacter playerCharacter;
 
     private Vector2 moveInput;
+    private List<Transform> currentTargets;
     private bool hooking = false;
 
     public PlayerCharacter PlayerCharacter
@@ -25,7 +30,9 @@ public class PlayerController : MonoBehaviour
     {
         playerCharacter.Move(GetRelativeMovement());
 
-        CheckNearbyEnemies();
+        CheckNearbyTargets();
+        UpdateAttackTarget();
+        UpdateHookTarget();
     }
 
     /// <summary>
@@ -48,58 +55,59 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Casts sphere to detect nearby enemies and target them
     /// </summary>
-    private void CheckNearbyEnemies()
+    private void CheckNearbyTargets()
     {
-        List<Transform> enemies = new List<Transform>();
-        foreach (Collider coll in Physics.OverlapSphere(launchAttackPoint.position, settings.ExternLaunchAttackDetectRadius))
+        List<Transform> objects = new List<Transform>();
+        foreach (Collider coll in Physics.OverlapSphere(detectionPoint.position, settings.OutsideDetectionRadius))
         {
-            if (coll.GetComponentInParent<IAttackable>() != null)
+            if (coll.GetComponentInParent<ITargetable>() != null)
             {
 
-                if (Vector3.Distance(coll.transform.position, launchAttackPoint.position) <= settings.launchAttackDetectRadius)
-                    enemies.Add(coll.transform);
+                if (Vector3.Distance(coll.transform.position, detectionPoint.position) <= settings.insideDetectionRadius)
+                    objects.Add(coll.transform);
                 else
                     coll.GetComponentInParent<ITargetable>()?.SetTargettedState(false);
             }
         }
+        currentTargets = objects;
 
-        if (enemies.Count > 0)
+    }
+
+    /// <summary>
+    /// Update attack target in player character
+    /// </summary>
+    private void UpdateAttackTarget()
+    {
+        if (currentTargets.Count > 0)
         {
-            Transform newTarget = GetClosest(enemies);
+            List<Transform> attackables = new List<Transform>();
 
-            newTarget.gameObject.GetComponentInParent<ITargetable>()?.SetTargettedState(true);
+            for (int i = 0; i < currentTargets.Count; i++)
+            {
+                if (currentTargets[i].TryGetComponent<IAttackable>(out _))
+                    attackables.Add(currentTargets[i]);
+            }
 
-            playerCharacter.SetAttackTarget(newTarget);
+            if (attackables.Count > 0)
+            {
+                Transform newTarget = GetClosest(currentTargets);
+
+                playerCharacter.SetAttackTarget(newTarget);
+
+            }
+            else
+                playerCharacter.SetAttackTarget(null);
         }
         else
             playerCharacter.SetAttackTarget(null);
     }
 
-    private void CheckNearbyHookPoints()
+    /// <summary>
+    /// Update hookable target on player character
+    /// </summary>
+    private void UpdateHookTarget()
     {
-        List<Transform> enemies = new List<Transform>();
-        foreach (Collider coll in Physics.OverlapSphere(launchAttackPoint.position, settings.ExternLaunchAttackDetectRadius))
-        {
-            if (coll.GetComponentInParent<IAttackable>() != null)
-            {
-
-                if (Vector3.Distance(coll.transform.position, launchAttackPoint.position) <= settings.launchAttackDetectRadius)
-                    enemies.Add(coll.transform);
-                else
-                    coll.GetComponentInParent<ITargetable>()?.SetTargettedState(false);
-            }
-        }
-
-        if (enemies.Count > 0)
-        {
-            Transform newTarget = GetClosest(enemies);
-
-            newTarget.gameObject.GetComponentInParent<ITargetable>()?.SetTargettedState(true);
-
-            playerCharacter.SetAttackTarget(newTarget);
-        }
-        else
-            playerCharacter.SetAttackTarget(null);
+        //set player hook target here
     }
 
     /// <summary>
@@ -137,21 +145,21 @@ public class PlayerController : MonoBehaviour
     /// <param name="inputValue"></param>
     private void OnHook(InputValue inputValue)
     {
-        Debug.Log("Hook input");
-        //bool value = inputValue.Get<bool>();
+        bool value = inputValue.isPressed;
 
-        //if (hooking != value)
-        //{
-        //    if (hooking)
-        //    {
-
-        //    }
-        //    else
-        //    {
-        //        playerCharacter.StartHook();
-        //    }
-        //}
-        //hooking = value;
+        if (hooking != value)
+        {
+            if (hooking)
+            {
+                playerCharacter.StopHook();
+            }
+            else
+            {
+                Debug.Log("Hook input");
+                playerCharacter.StartHook();
+            }
+        }
+        hooking = value;
 
     }
 
@@ -193,6 +201,6 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (settings)
-            Gizmos.DrawWireSphere(launchAttackPoint.position, settings.launchAttackDetectRadius);
+            Gizmos.DrawWireSphere(detectionPoint.position, settings.insideDetectionRadius);
     }
 }
