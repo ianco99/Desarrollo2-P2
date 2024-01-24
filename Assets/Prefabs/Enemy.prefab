@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5905292168261301591}
   - component: {fileID: 8819020319070264170}
   - component: {fileID: 7327356441785441640}
-  - component: {fileID: 4279594411896067787}
   - component: {fileID: 4831890439584795584}
   m_Layer: 0
   m_Name: Mesh
@@ -85,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4279594411896067787
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631221449942462051}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4258985910291648141, guid: a9e884a69aaa3844b93ecdb284717c66, type: 3}
 --- !u!114 &4831890439584795584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,8 +757,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7097765225136567585}
-  - component: {fileID: 8386680514799477936}
-  - component: {fileID: 5174190781842671525}
+  - component: {fileID: 186636582}
+  - component: {fileID: 186636581}
+  - component: {fileID: 186636580}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -798,7 +784,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8386680514799477936
+--- !u!114 &186636582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -810,7 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95adb0690b6bdb444835808818a4242c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleOutline: {fileID: 5174190781842671525}
+  toggleOutline: {fileID: 186636581}
   OnAttacked:
     m_PersistentCalls:
       m_Calls:
@@ -826,7 +812,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5174190781842671525
+--- !u!114 &186636581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -840,3 +826,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlines:
   - {fileID: 4831890439584795584}
+--- !u!64 &186636580
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7097765225136567597}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4258985910291648141, guid: a9e884a69aaa3844b93ecdb284717c66, type: 3}

@@ -7,7 +7,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     [SerializeField] private PlayerSettings playerSettings;
     [SerializeField] private Rigidbody rb;
 
-    private Transform attackTarget;
+    private PlayerController controller;
+
     private SpringJoint hookJoint;
 
     private bool characterGrounded;
@@ -18,6 +19,24 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
     private float currentTimeJumping;
     private float coyoteCurrentTime;
+
+    private void Awake()
+    {
+        if(TryGetComponent(out controller))
+        {
+            controller.OnStartAttack += LaunchAttack;
+            controller.OnStartHook += StartHook;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(controller)
+        {
+            controller.OnStartAttack -= LaunchAttack;
+            controller.OnStartHook -= StartHook;
+        }
+    }
 
     private void Update()
     {
@@ -115,15 +134,15 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     /// Launches player towards attackTarget
     /// </summary>
     /// <param name="attackTarget"></param>
-    public void LaunchAttack()
+    public void LaunchAttack(IAttackable target)
     {
-        if (characterAttacking || attackTarget == null)
+        if (characterAttacking)
             return;
 
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
 
-        Vector3 destination = attackTarget.position - transform.position;
+        Vector3 destination = target.GetTransform().position - transform.position;
         destination = destination.normalized;
         rb.AddForce(destination * playerSettings.launchAttackForce, ForceMode.Impulse);
         rb.AddTorque(destination, ForceMode.Impulse);
@@ -155,14 +174,13 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
         rb.AddForce(Vector3.up * 20, ForceMode.Impulse);
 
-        attackTarget = null;
         characterAttacking = false;
     }
 
     /// <summary>
     /// Adds joint component
     /// </summary>
-    public void StartHook()
+    public void StartHook(IHookable target)
     {
         hookJoint = rb.gameObject.AddComponent<SpringJoint>();
 
@@ -212,10 +230,5 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     public Rigidbody GetRigidbody()
     {
         return rb;
-    }
-
-    public void SetAttackTarget(Transform newTarget)
-    {
-        attackTarget = newTarget;
     }
 }

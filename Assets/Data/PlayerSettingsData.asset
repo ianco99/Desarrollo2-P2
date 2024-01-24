@@ -20,6 +20,6 @@ MonoBehaviour:
   fallingMultiplier: 2.5
   lowJumpMultiplier: 5
   targetLowJumpTimer: 0.1
-  launchAttackDetectRadius: 9.82
-  ExternLaunchAttackDetectRadius: 11
+  insideDetectionRadius: 4
+  OutsideDetectionRadius: 5
   launchAttackForce: 40

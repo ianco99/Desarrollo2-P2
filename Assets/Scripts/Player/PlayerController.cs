@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerCharacter playerCharacter;
 
     private Vector2 moveInput;
+
     private List<Transform> currentTargets;
+    private IAttackable currentAttackTarget;
+    private IHookable currentHookTarget;
+
     private bool hooking = false;
+
+    public Action<IAttackable> OnStartAttack;
+    public Action<IHookable> OnStartHook;
 
     public PlayerCharacter PlayerCharacter
     {
@@ -64,13 +72,15 @@ public class PlayerController : MonoBehaviour
             {
 
                 if (Vector3.Distance(coll.transform.position, detectionPoint.position) <= settings.insideDetectionRadius)
+                {
                     objects.Add(coll.transform);
+                    coll.GetComponentInParent<ITargetable>()?.SetTargettedState(true);
+                }
                 else
                     coll.GetComponentInParent<ITargetable>()?.SetTargettedState(false);
             }
         }
         currentTargets = objects;
-
     }
 
     /// <summary>
@@ -90,16 +100,15 @@ public class PlayerController : MonoBehaviour
 
             if (attackables.Count > 0)
             {
-                Transform newTarget = GetClosest(currentTargets);
+                Transform newTarget = GetClosest(attackables);
 
-                playerCharacter.SetAttackTarget(newTarget);
-
+                currentAttackTarget = newTarget.GetComponent<IAttackable>();
             }
             else
-                playerCharacter.SetAttackTarget(null);
+                currentAttackTarget = null;
         }
         else
-            playerCharacter.SetAttackTarget(null);
+            currentAttackTarget = null;
     }
 
     /// <summary>
@@ -107,7 +116,27 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateHookTarget()
     {
-        //set player hook target here
+        if (currentTargets.Count > 0)
+        {
+            List<Transform> hookables = new List<Transform>();
+
+            for (int i = 0; i < currentTargets.Count; i++)
+            {
+                if (currentTargets[i].TryGetComponent<IHookable>(out _))
+                    hookables.Add(currentTargets[i]);
+            }
+
+            if (hookables.Count > 0)
+            {
+                Transform newTarget = GetClosest(hookables);
+
+                currentHookTarget = newTarget.GetComponent<IHookable>();
+            }
+            else
+                currentHookTarget = null;
+        }
+        else
+            currentHookTarget = null;
     }
 
     /// <summary>
@@ -134,9 +163,10 @@ public class PlayerController : MonoBehaviour
     /// <param name="inputValue"></param>
     private void OnAttack(InputValue inputValue)
     {
-        CheckNearbyEnemies();
-
-        playerCharacter.LaunchAttack();
+        if (currentAttackTarget != null)
+        {
+            OnStartAttack?.Invoke(currentAttackTarget);
+        }
     }
 
     /// <summary>
@@ -156,7 +186,8 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Debug.Log("Hook input");
-                playerCharacter.StartHook();
+                if (currentAttackTarget != null)
+                    OnStartAttack?.Invoke(currentAttackTarget);
             }
         }
         hooking = value;
