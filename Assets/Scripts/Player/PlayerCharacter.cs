@@ -70,7 +70,6 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
         if (!characterGrounded)
             coyoteCurrentTime += Time.deltaTime;
-
     }
 
     /// <summary>
@@ -98,7 +97,6 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     /// <param name="relativeMovement"></param>
     public void Move(Vector3 relativeMovement)
     {
-
         if (Mathf.Abs(rb.velocity.z) > playerSettings.maxHorVelocity)
         {
             relativeMovement = Vector3.zero;
@@ -183,8 +181,10 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     public void StartHook(IHookable target)
     {
         hookJoint = rb.gameObject.AddComponent<SpringJoint>();
-
-        
+        hookJoint.connectedBody = target.GetRigidbody();
+        hookJoint.anchor = Vector3.zero;
+        hookJoint.autoConfigureConnectedAnchor = false;
+        hookJoint.spring = 7.0f;
     }
 
     /// <summary>
@@ -192,7 +192,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     /// </summary>
     public void StopHook()
     {
-
+        Destroy(hookJoint); 
+        hookJoint = null;
     }
 
     /// <summary>

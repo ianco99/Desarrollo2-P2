@@ -1,16 +1,33 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BaseHookPoint : MonoBehaviour, IHookable, ITargetable
+[RequireComponent(typeof(Rigidbody))]
+public class BaseHookPoint : BaseTargetteable, IHookable, ITargetable
 {
+    private Rigidbody rb;
     public UnityEvent onHooked;
+
+    private void Awake()
+    {
+        if (!rb)
+        {
+            rb = GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+        }
+    }
+
     public void RecieveHook()
     {
         onHooked.Invoke();
     }
 
-    public void SetTargettedState(bool value)
+    public Transform GetTransform()
     {
-        throw new System.NotImplementedException();
+        return transform;
+    }
+
+    public Rigidbody GetRigidbody()
+    {
+        return rb;
     }
 }

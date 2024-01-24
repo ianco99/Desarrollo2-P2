@@ -67,12 +67,12 @@ namespace Inputs
                 },
                 {
                     ""name"": ""Hook"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""6cb14230-d748-4547-867d-790a4825f5af"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [

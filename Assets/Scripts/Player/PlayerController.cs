@@ -185,9 +185,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Hook input");
-                if (currentAttackTarget != null)
-                    OnStartAttack?.Invoke(currentAttackTarget);
+
+                if (currentHookTarget != null)
+                {
+                    OnStartHook?.Invoke(currentHookTarget);
+                }
             }
         }
         hooking = value;
