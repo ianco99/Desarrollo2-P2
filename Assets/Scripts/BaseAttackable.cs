@@ -13,4 +13,9 @@ public class BaseAttackable : BaseTargetteable, IAttackable
     {
         OnAttacked.Invoke();
     }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
 }
