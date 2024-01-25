@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Tooltip("Point from which sphere cast starts in order to detect enemies")]
-    [SerializeField] private Transform detectionPoint;
+    [SerializeField] public Transform detectionPoint;
     [Tooltip("Point for the camera to focus on")]
     [SerializeField] private Transform cameraPoint;
     [SerializeField] private PlayerSettings settings;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour, ICharacter
@@ -184,7 +185,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         hookJoint.connectedBody = target.GetRigidbody();
         hookJoint.anchor = Vector3.zero;
         hookJoint.autoConfigureConnectedAnchor = false;
-        hookJoint.spring = 7.0f;
+        hookJoint.spring = 3.0f;
+        hookJoint.maxDistance = 2.0f;
     }
 
     /// <summary>
@@ -192,6 +194,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     /// </summary>
     public void StopHook()
     {
+        rb.AddRelativeTorque(controller.detectionPoint.right * 99999.0f, ForceMode.VelocityChange);
         Destroy(hookJoint); 
         hookJoint = null;
     }
