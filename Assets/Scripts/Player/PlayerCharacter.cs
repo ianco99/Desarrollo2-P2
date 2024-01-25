@@ -7,6 +7,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 {
     [SerializeField] private PlayerSettings playerSettings;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private LineRenderer lineRenderer;
 
     private PlayerController controller;
 
@@ -23,7 +24,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
     private void Awake()
     {
-        if(TryGetComponent(out controller))
+        if (TryGetComponent(out controller))
         {
             controller.OnStartAttack += LaunchAttack;
             controller.OnStartHook += StartHook;
@@ -32,7 +33,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
     private void OnDestroy()
     {
-        if(controller)
+        if (controller)
         {
             controller.OnStartAttack -= LaunchAttack;
             controller.OnStartHook -= StartHook;
@@ -187,6 +188,14 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         hookJoint.autoConfigureConnectedAnchor = false;
         hookJoint.spring = 3.0f;
         hookJoint.maxDistance = 2.0f;
+
+        lineRenderer.enabled = true;
+    }
+
+    public void DrawHook(Vector3 endHookPos)
+    {
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, endHookPos);
     }
 
     /// <summary>
@@ -195,8 +204,16 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     public void StopHook()
     {
         rb.AddRelativeTorque(controller.detectionPoint.right * 99999.0f, ForceMode.VelocityChange);
-        Destroy(hookJoint); 
+
+        rb.AddForce(Vector3.up * 20, ForceMode.Impulse);
+
+        Destroy(hookJoint);
         hookJoint = null;
+
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, transform.position);
+
+        lineRenderer.enabled = false;
     }
 
     /// <summary>

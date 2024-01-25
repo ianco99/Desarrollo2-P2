@@ -39,8 +39,16 @@ public class PlayerController : MonoBehaviour
         playerCharacter.Move(GetRelativeMovement());
 
         CheckNearbyTargets();
+
         UpdateAttackTarget();
-        UpdateHookTarget();
+
+        if (!hooking)
+            UpdateHookTarget();
+
+        if (hooking && currentHookTarget != null)
+        {
+            playerCharacter.DrawHook(currentHookTarget.GetTransform().position);
+        }
     }
 
     /// <summary>
@@ -116,6 +124,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateHookTarget()
     {
+
         if (currentTargets.Count > 0)
         {
             List<Transform> hookables = new List<Transform>();
