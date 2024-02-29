@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a463b4d7ce6f6546bb4b8e53ee0d0b0, type: 3}
   m_Name: CameraSettingsData
   m_EditorClassIdentifier: 
+  playerPrefKey: ControlScheme
+  playerPrefKeyKeyboard: Keyboard
+  playerPrefKeyController: Controller
   controllerYAxisMaxSpeed: 0.1
   controllerXAxisMaxSpeed: 3
-  mouseYAxisMaxSpeed: 0.01
-  mouseXAxisMaxSpeed: 0.2
+  mouseYAxisMaxSpeed: 0.005
+  mouseXAxisMaxSpeed: 0.5
