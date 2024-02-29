@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   coyoteTargetTime: 0.3
-  jumpForce: 15
+  jumpForce: 25
   maxHorVelocity: 50
   maxVertVelocity: 25
   fallingMultiplier: 2.5
