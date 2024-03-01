@@ -5,6 +5,7 @@ using UnityEngine;
 public class CrabEnemy : MonoBehaviour
 {
     [SerializeField] private float timeToMove;
+    [SerializeField] AnimationCurve speedCurve;
     [SerializeField] private float speed;
 
     private Rigidbody rb;
@@ -23,13 +24,21 @@ public class CrabEnemy : MonoBehaviour
 
     private void Update()
     {
+        BodyMovement();
+        WeaponMovement();
+    }
+
+    private void BodyMovement()
+    {
+        float normTime = currentMoveTime / timeToMove;
+        float moveSpeed = speedCurve.Evaluate(normTime);
         if (movingRight)
         {
-            transform.Translate(transform.right * speed * Time.deltaTime, Space.Self);
+            transform.Translate(transform.right * moveSpeed * speed * Time.deltaTime, Space.Self);
         }
         else
         {
-            transform.Translate(-transform.right * speed * Time.deltaTime, Space.Self);
+            transform.Translate(-transform.right * moveSpeed * speed * Time.deltaTime, Space.Self);
         }
 
         currentMoveTime += Time.deltaTime;
@@ -39,5 +48,10 @@ public class CrabEnemy : MonoBehaviour
             movingRight = !movingRight;
             currentMoveTime = 0;
         }
+    }
+
+    private void WeaponMovement()
+    {
+
     }
 }
