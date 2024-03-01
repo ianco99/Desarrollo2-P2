@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public interface IAttackable
+namespace kuznickiAttackables
 {
-    public void ReceiveAttack();
-    public Transform GetTransform();
+    public interface IAttackable
+    {
+        public void ReceiveAttack();
+        public Transform GetTransform();
+    }
 }

@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BaseAttackable : BaseTargetteable, IAttackable
+namespace kuznickiAttackables
 {
-    public UnityEvent OnAttacked;
-    /// <summary>
-    /// Runs when receiving attack by player
-    /// </summary>
-    public void ReceiveAttack()
+    [RequireComponent(typeof(HealthController))]
+    public class BaseAttackable : BaseTargetteable, IAttackable
     {
-        OnAttacked.Invoke();
-    }
+        public UnityEvent OnAttacked;
+        /// <summary>
+        /// Runs when receiving attack by player
+        /// </summary>
+        public void ReceiveAttack()
+        {
+            OnAttacked.Invoke();
+        }
 
-    public Transform GetTransform()
-    {
-        return transform;
+        public Transform GetTransform()
+        {
+            return transform;
+        }
     }
 }

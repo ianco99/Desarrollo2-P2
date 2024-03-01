@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using kuznickiAttackables;
 
 /// <summary>
 /// Player class in charge of processing input and controlling player's behaviour
