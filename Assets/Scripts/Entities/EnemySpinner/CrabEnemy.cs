@@ -1,4 +1,5 @@
 using kuznickiAttackables;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(HealthController), typeof(Rigidbody))]
@@ -34,6 +35,14 @@ public class CrabEnemy : MonoBehaviour
     {
         BodyMovement();
         WeaponMovement();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            healthController.RecieveDamage(1);
+        }
     }
 
     private void BodyMovement()
@@ -91,5 +100,23 @@ public class CrabEnemy : MonoBehaviour
             rotatingUp = !rotatingUp;
             currentWeaponRotateTime = 0;
         }
+    }
+
+    public void Die()
+    {
+        rb.AddForce(Vector3.up * 5.0f, ForceMode.Impulse);
+
+        for (int i = 0; i < weaponsTransforms.Length; i++)
+        {
+            weaponsTransforms[i].gameObject.SetActive(false);
+        }
+        
+        StartCoroutine(DeathCoroutine());
+    }
+
+    private IEnumerator DeathCoroutine()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Destroy(gameObject);
     }
 }
