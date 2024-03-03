@@ -11,7 +11,7 @@ public class CrabEnemy : MonoBehaviour
     [SerializeField] AnimationCurve rotateSpeedCurve;
     [SerializeField] private float moveSpeedMultiplier;
     [SerializeField] private float rotateSpeedMultiplier;
-    [SerializeField] private Transform[] weaponsTransforms;
+    [SerializeField] private WeaponManager weaponManager;
 
     private Rigidbody rb;
     private HealthController healthController;
@@ -73,7 +73,7 @@ public class CrabEnemy : MonoBehaviour
         float normTime = currentWeaponRotateTime / timeToRotateWeapons;
         float rotateSpeed = rotateSpeedCurve.Evaluate(normTime);
 
-        for (int i = 0; i < weaponsTransforms.Length; i++)
+        for (int i = 0; i < weaponManager.GetWeaponParents().Count; i++)
         {
             Vector3 newRotation = Vector3.zero;
 
@@ -81,13 +81,13 @@ public class CrabEnemy : MonoBehaviour
             {
                 newRotation -= new Vector3(rotateSpeed,0, 0 ) * rotateSpeedMultiplier * Time.deltaTime;
                 //transform.localEulerAngles = newRotation;
-                weaponsTransforms[i].Rotate(newRotation, Space.Self);
+                weaponManager.GetWeaponParents()[i].Rotate(newRotation, Space.Self);
             }
             else
             {
                 newRotation += new Vector3(rotateSpeed, 0, 0) * rotateSpeedMultiplier * Time.deltaTime;
                 //transform.localEulerAngles = newRotation;
-                weaponsTransforms[i].Rotate(newRotation, Space.Self);
+                weaponManager.GetWeaponParents()[i].Rotate(newRotation, Space.Self);
             }
         }
 
@@ -106,9 +106,9 @@ public class CrabEnemy : MonoBehaviour
     {
         rb.AddForce(Vector3.up * 5.0f, ForceMode.Impulse);
 
-        for (int i = 0; i < weaponsTransforms.Length; i++)
+        for (int i = 0; i < weaponManager.GetWeaponParents().Count; i++)
         {
-            weaponsTransforms[i].gameObject.SetActive(false);
+            weaponManager.GetWeaponParents()[i].gameObject.SetActive(false);
         }
         
         StartCoroutine(DeathCoroutine());
