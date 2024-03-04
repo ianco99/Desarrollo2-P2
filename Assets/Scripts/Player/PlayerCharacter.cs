@@ -6,11 +6,11 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     [SerializeField] private PlayerSettings playerSettings;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private Material material;
 
     private PlayerController controller;
 
     private SpringJoint hookJoint;
-
     private bool characterGrounded;
     private bool characterJumping;
     private bool characterAttacking;
@@ -35,6 +35,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         {
             controller.OnStartAttack -= LaunchAttack;
             controller.OnStartHook -= StartHook;
+            material.color = Color.cyan;
         }
     }
 
@@ -47,6 +48,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     {
         Vector3 newForce = -rb.velocity * 2.5f;
         rb.AddForce(newForce, ForceMode.VelocityChange);
+        material.color = Color.white;
     }
 
     public void Die()

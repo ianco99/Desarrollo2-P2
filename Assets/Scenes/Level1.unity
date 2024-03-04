@@ -1148,6 +1148,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8688982990593057279, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: timeToRotateWeapons
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688982990593057279, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: rotateSpeedCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688982990593057279, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: rotateSpeedCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688982990593057279, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: rotateSpeedCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688982990593057279, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: rotateSpeedCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688982990593057279, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: rotateSpeedCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 9063884711668694930, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1336,6 +1360,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1696655024, guid: 3c49e5e994434464c8f8a514f5de7f24, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c0ec705c4bff4b81e9ba909c7b746, type: 2}
     - target: {fileID: 1691113767424663218, guid: 3c49e5e994434464c8f8a514f5de7f24, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2536,7 +2564,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 64
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -2561,8 +2589,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880230316}
-  m_LocalRotation: {x: 0.043935943, y: 0.3902859, z: -0.018649708, w: 0.91945577}
-  m_LocalPosition: {x: 59.82396, y: 20.769999, z: 32.28205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
