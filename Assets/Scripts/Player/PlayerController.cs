@@ -223,6 +223,17 @@ public class PlayerController : MonoBehaviour
         return closest;
     }
 
+
+    public void OnRecievedDamageHandler()
+    {
+        playerCharacter.DamagedReaction();
+    }
+
+    public void OnDeathHandler()
+    {
+        playerCharacter.Die();
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         IAttackable attackable = other.gameObject.GetComponentInParent<IAttackable>();

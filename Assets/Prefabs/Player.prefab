@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 1691113767424663224}
   - component: {fileID: 1691113767424663225}
   - component: {fileID: 1696655024}
+  - component: {fileID: 3769863437908131883}
   - component: {fileID: 1691113767424663229}
   m_Layer: 4
   m_Name: Player
@@ -239,8 +240,8 @@ Transform:
   m_GameObject: {fileID: 1691113767424663219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.07, y: 0.25, z: -1.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1691113767108639658}
   - {fileID: 546275438}
@@ -371,6 +372,49 @@ MonoBehaviour:
   playerSettings: {fileID: 11400000, guid: d1bd592a28e0a6745ada6e0a85aaca5a, type: 2}
   rb: {fileID: 1691113767424663229}
   lineRenderer: {fileID: 546275439}
+--- !u!114 &3769863437908131883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691113767424663219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495ab9273b3038c49b310c4d41ba48e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1691113767424663225}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRecievedDamageHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1691113767424663225}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDeathHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  health: 5
 --- !u!54 &1691113767424663229
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -379,9 +423,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691113767424663219}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.7
-  m_AngularDrag: 0.2
+  m_Mass: 0.5
+  m_Drag: 0.3
+  m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

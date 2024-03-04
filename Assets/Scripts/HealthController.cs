@@ -7,6 +7,7 @@ namespace kuznickiAttackables
 {
     public class HealthController : MonoBehaviour
     {
+        public UnityEvent OnDamaged;
         public UnityEvent OnDeath;
         [SerializeField] private float health;
         public float Health
@@ -26,6 +27,7 @@ namespace kuznickiAttackables
         public float RecieveDamage(float damage)
         {
             Health -= damage;
+            OnDamaged?.Invoke();
             return Health;
         }
 

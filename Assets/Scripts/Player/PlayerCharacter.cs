@@ -43,6 +43,17 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         CheckGrounded();
     }
 
+    public void DamagedReaction()
+    {
+        Vector3 newForce = -rb.velocity * 2.5f;
+        rb.AddForce(newForce, ForceMode.VelocityChange);
+    }
+
+    public void Die()
+    {
+
+    }
+
     /// <summary>
     /// Checks if player is grounded
     /// </summary>
@@ -241,6 +252,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     {
         characterJumping = value;
     }
+
 
     /// <summary>
     /// Rigidbody getter

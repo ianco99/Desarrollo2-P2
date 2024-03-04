@@ -916,7 +916,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   moveSpeedMultiplier: 2
-  rotateSpeedMultiplier: 40
+  rotateSpeedMultiplier: 100
   weaponManager: {fileID: 1941847355}
 --- !u!114 &1941847355
 MonoBehaviour:
@@ -936,6 +936,7 @@ MonoBehaviour:
   weaponParents:
   - {fileID: 6762955682795534361}
   - {fileID: 6591252387716264638}
+  damageToDeal: 0
 --- !u!114 &4564973253520160483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,6 +949,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495ab9273b3038c49b310c4d41ba48e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls:
