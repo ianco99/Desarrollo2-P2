@@ -190,6 +190,7 @@ public class PlayerController : MonoBehaviour
             if (hooking)
             {
                 playerCharacter.StopHook();
+                hooking = value;
             }
             else
             {
@@ -197,10 +198,10 @@ public class PlayerController : MonoBehaviour
                 if (currentHookTarget != null)
                 {
                     OnStartHook?.Invoke(currentHookTarget);
+                    hooking = value;
                 }
             }
         }
-        hooking = value;
 
     }
 

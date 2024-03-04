@@ -6,9 +6,9 @@ public class BeeIdleState<T> : BaseState<T>
     private Rigidbody rb;
 
     private bool movingUp = true;
-    private float timeToMove = 2.0f;
+    private float timeToMove = 0.5f;
     private float currentTimeToMove = 0.0f;
-    private float speed = 25.0f;
+    private float speed = 75.0f;
     public BeeIdleState(T id, Rigidbody rigidbody) : base(id)
     {
         rb = rigidbody;
