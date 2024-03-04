@@ -1,0 +1,42 @@
+using Patterns.FSM;
+using UnityEngine;
+
+public class BeeIdleState<T> : BaseState<T>
+{
+    private Rigidbody rb;
+
+    private bool movingUp = true;
+    private float timeToMove = 2.0f;
+    private float currentTimeToMove = 0.0f;
+    private float speed = 25.0f;
+    public BeeIdleState(T id, Rigidbody rigidbody) : base(id)
+    {
+        rb = rigidbody;
+    }
+
+    public override void OnFixedUpdate()
+    {
+        base.OnFixedUpdate();
+
+        if (movingUp)
+            rb.velocity = Vector3.up * speed * Time.fixedDeltaTime;
+        if (!movingUp)
+            rb.velocity = -Vector3.up * speed * Time.fixedDeltaTime;
+
+        currentTimeToMove += Time.fixedDeltaTime;
+
+        if(currentTimeToMove >= timeToMove)
+        {
+            movingUp = !movingUp;
+            currentTimeToMove = 0.0f;
+        }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+
+        currentTimeToMove = 0.0f;
+    }
+
+}
