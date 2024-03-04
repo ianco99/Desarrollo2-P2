@@ -60,6 +60,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     public void Die()
     {
         rb.useGravity = false;
+        material.color = Color.black;
+
         StartCoroutine(DeathSequence());
     }
 
@@ -74,6 +76,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         rb.rotation = Quaternion.Euler(Vector3.zero);
         rb.velocity = Vector3.zero;
         rb.useGravity = true;
+        material.color = Color.cyan;
+        healthController.SetHealth(2.0f);
     }
 
     /// <summary>
@@ -110,6 +114,10 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         if (healthController.Health == 1)
         {
             material.color = Color.white;
+        }
+        else if(healthController.Health == 0)
+        {
+            material.color = Color.black;
         }
         else
         {

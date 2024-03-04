@@ -35,6 +35,11 @@ namespace kuznickiAttackables
         {
             Health = 0;
         }
+
+        public void SetHealth(float newHealth)
+        {
+            Health = newHealth;
+        }
     }
 }
 
