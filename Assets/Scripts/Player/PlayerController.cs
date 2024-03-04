@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using kuznickiAttackables;
+using kuznickiEventChannel;
 /// <summary>
 /// Player class in charge of processing input and controlling player's behaviour
 /// </summary>

@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.kuznicki.eventchannel": {
+      "version": "https://github.com/ianco99/Kuznicki-Event-Channel.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0cf33b06d9f9c8a00043b7444f18b087f9115ffd"
+    },
     "com.unity.cinemachine": {
       "version": "2.8.9",
       "depth": 0,

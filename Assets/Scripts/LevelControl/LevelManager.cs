@@ -12,12 +12,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerControllerEventChannel endGoalChannel;
     [Tooltip("Actions done on ending level")]
     [SerializeField] private UnityEvent OnEndLevel;
-    [SerializeField] private PlayerController player;
+    [SerializeField] private PlayerControllerEventChannel playerRespawnChannel;
     [SerializeField] private Transform startingPoint;
     [Tooltip("All game objects that need re-enabling when restarting level")]
     [SerializeField] private GameObject[] respawneableObjects;
     [Tooltip("GameObject containing the pause menu")]
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private PlayerControllerEventChannel respawnChannel;
 
     private bool isPaused = false;
 
@@ -26,22 +27,23 @@ public class LevelManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         endGoalChannel.Subscribe(OnEndLevelHandler);
+        playerRespawnChannel.Subscribe(RespawnPlayer);
     }
 
     private void OnDestroy()
     {
         endGoalChannel.Unsubscribe(OnEndLevelHandler);
-
+        playerRespawnChannel.Unsubscribe(RespawnPlayer);
     }
 
     /// <summary>
     /// Respawns player in level
     /// </summary>
-    public void RespawnPlayer()
+    public void RespawnPlayer(PlayerController playerController)
     {
-        player.transform.position = startingPoint.position;
-        player.PlayerCharacter.GetRigidbody().rotation = Quaternion.Euler(Vector3.zero);
-        player.PlayerCharacter.GetRigidbody().velocity = Vector3.zero;
+        playerController.transform.position = startingPoint.position;
+        playerController.PlayerCharacter.Respawn();
+        
 
         foreach (var item in respawneableObjects)
         {

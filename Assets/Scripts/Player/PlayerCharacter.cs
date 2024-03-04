@@ -1,5 +1,7 @@
 using UnityEngine;
 using kuznickiAttackables;
+using System.Collections;
+using kuznickiEventChannel;
 
 public class PlayerCharacter : MonoBehaviour, ICharacter
 {
@@ -7,6 +9,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     [SerializeField] private Rigidbody rb;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Material material;
+    [SerializeField] private HealthController healthController;
+    [SerializeField] private PlayerControllerEventChannel respawnChannel;
 
     private PlayerController controller;
 
@@ -29,6 +33,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         }
     }
 
+
     private void OnDestroy()
     {
         if (controller)
@@ -42,6 +47,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     private void Update()
     {
         CheckGrounded();
+        CheckHealth();
     }
 
     public void DamagedReaction()
@@ -53,7 +59,21 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
     public void Die()
     {
+        rb.useGravity = false;
+        StartCoroutine(DeathSequence());
+    }
 
+    private IEnumerator DeathSequence()
+    {
+        yield return new WaitForSeconds(3.0f);
+        respawnChannel?.RaiseEvent(controller);
+    }
+
+    public void Respawn()
+    {
+        rb.rotation = Quaternion.Euler(Vector3.zero);
+        rb.velocity = Vector3.zero;
+        rb.useGravity = true;
     }
 
     /// <summary>
@@ -83,6 +103,18 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
         if (!characterGrounded)
             coyoteCurrentTime += Time.deltaTime;
+    }
+
+    private void CheckHealth()
+    {
+        if (healthController.Health == 1)
+        {
+            material.color = Color.white;
+        }
+        else
+        {
+            material.color = Color.cyan;
+        }
     }
 
     /// <summary>
