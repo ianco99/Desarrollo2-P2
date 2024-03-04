@@ -766,6 +766,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d293f9b3594deab4084c3ecc90fc063e, type: 3}
+--- !u!1 &711473106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8779070737316142849, guid: 494f07bfecb3d1b40b9e92b389bc6e61, type: 3}
+  m_PrefabInstance: {fileID: 8779070736017352744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &711473107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8779070737316142854, guid: 494f07bfecb3d1b40b9e92b389bc6e61, type: 3}
+  m_PrefabInstance: {fileID: 8779070736017352744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711473106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e35ac02482857e4d98ce81b032e98d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &711473112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711473106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5fd1650865473418d7ecabe72b2882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hazard: {fileID: 711473107}
+  respawnChannel: {fileID: 11400000, guid: 65091c7f2aee94848af156502684db26, type: 2}
 --- !u!1001 &799160859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1006,6 +1036,7 @@ MonoBehaviour:
   - {fileID: 2116726957}
   - {fileID: 1122336338}
   pauseMenu: {fileID: 1797876439}
+  respawnChannel: {fileID: 0}
 --- !u!114 &942378775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1368,6 +1399,10 @@ PrefabInstance:
       propertyPath: material
       value: 
       objectReference: {fileID: 2100000, guid: b42c0ec705c4bff4b81e9ba909c7b746, type: 2}
+    - target: {fileID: 1696655024, guid: 3c49e5e994434464c8f8a514f5de7f24, type: 3}
+      propertyPath: respawnChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 65091c7f2aee94848af156502684db26, type: 2}
     - target: {fileID: 1696655024, guid: 3c49e5e994434464c8f8a514f5de7f24, type: 3}
       propertyPath: healthController
       value: 
@@ -2991,6 +3026,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8779070737316142853, guid: 494f07bfecb3d1b40b9e92b389bc6e61, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779070737316142854, guid: 494f07bfecb3d1b40b9e92b389bc6e61, type: 3}
+      propertyPath: OnPlayerTriggerEvent.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8779070737316142854, guid: 494f07bfecb3d1b40b9e92b389bc6e61, type: 3}

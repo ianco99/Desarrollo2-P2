@@ -17,7 +17,7 @@ namespace kuznickiAttackables
             {
                 health = value;
 
-                if(health == 0)
+                if(health <= 0)
                 {
                     OnDeath?.Invoke();
                 }
