@@ -372,6 +372,9 @@ MonoBehaviour:
   playerSettings: {fileID: 11400000, guid: d1bd592a28e0a6745ada6e0a85aaca5a, type: 2}
   rb: {fileID: 1691113767424663229}
   lineRenderer: {fileID: 546275439}
+  material: {fileID: 2100000, guid: b42c0ec705c4bff4b81e9ba909c7b746, type: 2}
+  healthController: {fileID: 3769863437908131883}
+  respawnChannel: {fileID: 11400000, guid: 65091c7f2aee94848af156502684db26, type: 2}
 --- !u!114 &3769863437908131883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +417,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  health: 5
+  health: 2
 --- !u!54 &1691113767424663229
 Rigidbody:
   m_ObjectHideFlags: 0

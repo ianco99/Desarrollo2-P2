@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8779070737316142851}
   - component: {fileID: 8779070737316142850}
   - component: {fileID: 8779070737316142854}
+  - component: {fileID: 711473112}
   m_Layer: 0
   m_Name: HazardTrigger
   m_TagString: Untagged
@@ -112,16 +113,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnPlayerTriggerEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: RespawnPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &711473112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8779070737316142849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5fd1650865473418d7ecabe72b2882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hazard: {fileID: 8779070737316142854}
+  respawnChannel: {fileID: 11400000, guid: 65091c7f2aee94848af156502684db26, type: 2}
