@@ -5,10 +5,17 @@ public class BeeIdleState<T> : BaseState<T>
 {
     private Rigidbody rb;
 
-    private bool movingUp = true;
     private float timeToMove = 0.5f;
     private float currentTimeToMove = 0.0f;
     private float speed = 75.0f;
+    private bool movingUp = true;
+    private bool foundTarget;
+    public bool FoundTarget
+    {
+        private set => foundTarget = value;
+        get => foundTarget;
+    }
+
     public BeeIdleState(T id, Rigidbody rigidbody) : base(id)
     {
         rb = rigidbody;
@@ -25,7 +32,7 @@ public class BeeIdleState<T> : BaseState<T>
 
         currentTimeToMove += Time.fixedDeltaTime;
 
-        if(currentTimeToMove >= timeToMove)
+        if (currentTimeToMove >= timeToMove)
         {
             movingUp = !movingUp;
             currentTimeToMove = 0.0f;
@@ -38,9 +45,9 @@ public class BeeIdleState<T> : BaseState<T>
 
         Collider[] sas = Physics.OverlapSphere(rb.position, 30.0f, LayerMask.GetMask("Water"));
 
-        if(sas.Length > 0)
+        if (sas.Length > 0)
         {
-            Debug.Log("ojo ian eh");
+            FoundTarget = true;
         }
     }
 
@@ -48,6 +55,7 @@ public class BeeIdleState<T> : BaseState<T>
     {
         base.OnExit();
 
+        FoundTarget = false;
         currentTimeToMove = 0.0f;
     }
 

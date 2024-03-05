@@ -814,7 +814,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25774
+  m_Name: pb_Mesh24544
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2003,7 +2003,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25856
+  m_Name: pb_Mesh24634
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2710,7 +2710,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262659445}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -4003,10 +4003,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Bee
       objectReference: {fileID: 0}
-    - target: {fileID: 6140379822788680742, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6140379822788680743, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4051,30 +4047,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6660965120811148636, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
-      propertyPath: Priority
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6660965120811148636, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
-      propertyPath: m_Volume
-      value: 0.427
-      objectReference: {fileID: 0}
-    - target: {fileID: 6660965120811148636, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
-      propertyPath: DopplerLevel
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6660965120811148636, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+    - target: {fileID: 6285028321855447039, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
+      propertyPath: m_Parameters.textureMode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6820543719058860290, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
-      propertyPath: m_Parameters.textureMode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6820543719058860290, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
+    - target: {fileID: 6285028321855447039, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0bfd24cbd9f259b49812df8d3da131e8, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f53317c68502524ca6ebdcce27f0625, type: 2}
+    - target: {fileID: 6285028321855447039, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 35.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285028321855447039, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285028321855447039, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285028321855447039, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.4841266
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34d538524f473834f9ec02d5b8d587f8, type: 3}
 --- !u!1001 &9063884711279530280
