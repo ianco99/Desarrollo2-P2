@@ -55,6 +55,7 @@ public class BeeIdleState<T> : BaseState<T>
     {
         base.OnExit();
 
+        rb.velocity = Vector3.zero;
         FoundTarget = false;
         currentTimeToMove = 0.0f;
     }

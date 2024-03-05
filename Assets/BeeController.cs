@@ -11,12 +11,15 @@ enum BeeStates
 [RequireComponent(typeof(Rigidbody))]
 public class BeeController : MonoBehaviour
 {
+    [SerializeField] private Transform model;
+    [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private LineRenderer aimingLine;
 
     private FiniteStateMachine<BeeStates> fsm;
     private BeeIdleState<BeeStates> idleState;
     private BeeAimingState<BeeStates> aimingState;
+    private BeeLaunchState<BeeStates> launchState;
 
     private void Awake()
     {
@@ -38,12 +41,14 @@ public class BeeController : MonoBehaviour
         fsm = new FiniteStateMachine<BeeStates>();
 
         idleState = new BeeIdleState<BeeStates>(BeeStates.Idle, rb);
-        aimingState = new BeeAimingState<BeeStates>(aimingLine, transform, BeeStates.Aiming, "Aiming");
+        aimingState = new BeeAimingState<BeeStates>(model, aimingLine, transform, BeeStates.Aiming, "Aiming");
+        launchState = new BeeLaunchState<BeeStates>(anim, model, rb, BeeStates.Launch, "Launch");
 
         fsm.AddState(idleState);
         fsm.AddState(aimingState);
 
         fsm.AddTransition(idleState, aimingState, () => idleState.FoundTarget);
+        fsm.AddTransition(aimingState, launchState, () => aimingState.ReadyToLaunch);
 
         fsm.SetCurrentState(idleState);
 

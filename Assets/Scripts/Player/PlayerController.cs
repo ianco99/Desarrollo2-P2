@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets closest transform from a list
+    /// Gets closest model from a list
     /// </summary>
     /// <param name="points"></param>
     /// <returns></returns>

@@ -1,16 +1,29 @@
 using Patterns.FSM;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BeeAimingState<T> : BaseState<T>
 {
     private LineRenderer lineRenderer;
     private Transform transform;
+    private Transform modelTransform;
     private PlayerCharacter foundPlayer;
 
-    public BeeAimingState(LineRenderer lineRenderer, Transform transform, T id, string name) : base(id, name)
+    private float timeToAim = 1.0f;
+    private float currentTimeToAim = 0.0f;
+    private bool readyToLaunch = false;
+
+    public bool ReadyToLaunch
     {
+        private set
+        {
+            readyToLaunch = value;
+        }
+        get => readyToLaunch;
+    }
+
+    public BeeAimingState(Transform model, LineRenderer lineRenderer, Transform transform, T id, string name) : base(id, name)
+    {
+        this.modelTransform = model;
         this.lineRenderer = lineRenderer;
         this.transform = transform;
     }
@@ -31,6 +44,8 @@ public class BeeAimingState<T> : BaseState<T>
                     lostPlayer = false;
                     lineRenderer.SetPosition(0, Vector3.zero);
                     lineRenderer.SetPosition(1, foundPlayer.transform.position - transform.position);
+                    modelTransform.LookAt(foundPlayer.transform);
+                    currentTimeToAim += Time.deltaTime;
                 }
             }
         }
@@ -39,6 +54,13 @@ public class BeeAimingState<T> : BaseState<T>
         {
             lineRenderer.SetPosition(0, Vector3.zero);
             lineRenderer.SetPosition(1, Vector3.zero);
+
+            currentTimeToAim = 0.0f;
+        }
+
+        if(currentTimeToAim >= timeToAim)
+        {
+            ReadyToLaunch = true;
         }
     }
 }

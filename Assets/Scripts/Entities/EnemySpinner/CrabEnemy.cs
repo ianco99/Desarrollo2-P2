@@ -80,13 +80,13 @@ public class CrabEnemy : MonoBehaviour
             if (rotatingUp)
             {
                 newRotation -= new Vector3(rotateSpeed,0, 0 ) * rotateSpeedMultiplier * Time.deltaTime;
-                //transform.localEulerAngles = newRotation;
+                //model.localEulerAngles = newRotation;
                 weaponManager.GetWeaponParents()[i].Rotate(newRotation, Space.Self);
             }
             else
             {
                 newRotation += new Vector3(rotateSpeed, 0, 0) * rotateSpeedMultiplier * Time.deltaTime;
-                //transform.localEulerAngles = newRotation;
+                //model.localEulerAngles = newRotation;
                 weaponManager.GetWeaponParents()[i].Rotate(newRotation, Space.Self);
             }
         }
