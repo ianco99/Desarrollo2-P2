@@ -21,7 +21,7 @@ public class BeeLaunchState<T> : BaseState<T>
         base.OnEnter();
 
         anim.SetTrigger("Launching");
-        rb.AddForce(model.forward * 10.0f, ForceMode.VelocityChange);
+        rb.AddForce(model.forward * 27.0f, ForceMode.VelocityChange);
     }
 
     public override void OnUpdate()
