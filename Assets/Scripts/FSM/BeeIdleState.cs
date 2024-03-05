@@ -32,6 +32,18 @@ public class BeeIdleState<T> : BaseState<T>
         }
     }
 
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+
+        Collider[] sas = Physics.OverlapSphere(rb.position, 30.0f, LayerMask.GetMask("Water"));
+
+        if(sas.Length > 0)
+        {
+            Debug.Log("ojo ian eh");
+        }
+    }
+
     public override void OnExit()
     {
         base.OnExit();
