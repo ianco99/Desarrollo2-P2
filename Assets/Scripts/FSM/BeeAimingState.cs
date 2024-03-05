@@ -63,4 +63,15 @@ public class BeeAimingState<T> : BaseState<T>
             ReadyToLaunch = true;
         }
     }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+
+        lineRenderer.SetPosition(0, Vector3.zero);
+        lineRenderer.SetPosition(1, Vector3.zero);
+
+        currentTimeToAim = 0.0f;
+        ReadyToLaunch = false;
+    }
 }

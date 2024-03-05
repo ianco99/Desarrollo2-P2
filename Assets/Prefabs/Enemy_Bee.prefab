@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 5962127740920902989}
-  anim: {fileID: 0}
+  anim: {fileID: 6467826570660900223}
   rb: {fileID: 6140379822788680736}
   aimingLine: {fileID: 6285028321855447039}
 --- !u!114 &6140379822788680737
