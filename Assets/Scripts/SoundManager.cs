@@ -5,6 +5,8 @@ using UnityEngine;
 struct AudioStruct
 {
     public string key;
+    public float pitch;
+    public float volume;
     public AudioClip clip;
 }
 public class SoundManager : MonoBehaviourSingleton<SoundManager>
@@ -19,6 +21,8 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
             if(audioClips[i].key == givenKey)
             {
                 audioSource.clip = audioClips[i].clip;
+                audioSource.pitch = audioClips[i].pitch;
+                audioSource.volume = audioClips[i].volume;
                 audioSource.Play();
             }
         }

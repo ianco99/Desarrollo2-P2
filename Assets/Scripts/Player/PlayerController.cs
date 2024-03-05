@@ -163,7 +163,6 @@ public class PlayerController : MonoBehaviour
     private void OnJump(InputValue value)
     {
         playerCharacter.Jump();
-        SoundManager.Instance.PlayAudioClip("PlayerJump");
     }
 
     /// <summary>

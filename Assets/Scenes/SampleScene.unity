@@ -249,7 +249,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37905786}
-  m_LocalRotation: {x: 0.08241942, y: 0.3891618, z: -0.034984972, w: 0.91680765}
+  m_LocalRotation: {x: 0.082419425, y: 0.3891618, z: -0.03498497, w: 0.91680765}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -786,7 +786,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35218
+  m_Name: pb_Mesh25774
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1975,7 +1975,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35296
+  m_Name: pb_Mesh25856
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2182,7 +2182,21 @@ MonoBehaviour:
   audioSource: {fileID: 907478886}
   audioClips:
   - key: PlayerJump
+    pitch: 1
+    volume: 0.5
     clip: {fileID: 8300000, guid: b9484ffdd4a515f4a96750eda8c4460b, type: 3}
+  - key: PlayerDamaged
+    pitch: 0.8
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 2ddac35b2cff0c84cab5c10a4ab4dc25, type: 3}
+  - key: PlayerLaunch
+    pitch: 0.8
+    volume: 0.5
+    clip: {fileID: 8300000, guid: bc8eff700c1474e4183758035ac67c85, type: 3}
+  - key: PlayerRebound
+    pitch: 0.8
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 07b9313a3bd7b6b46b93ba1bb872025e, type: 3}
 --- !u!82 &907478886
 AudioSource:
   m_ObjectHideFlags: 0

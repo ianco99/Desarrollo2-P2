@@ -55,6 +55,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         Vector3 newForce = -rb.velocity * 2.5f;
         rb.AddForce(newForce, ForceMode.VelocityChange);
         material.color = Color.white;
+
+        SoundManager.Instance.PlayAudioClip("PlayerDamaged");
     }
 
     public void Die()
@@ -139,6 +141,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
                 characterJumping = true;
                 rb.AddForce(Vector3.up * playerSettings.jumpForce, ForceMode.VelocityChange);
 
+                SoundManager.Instance.PlayAudioClip("PlayerJump");
             }
         }
 
@@ -197,6 +200,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         destination = destination.normalized;
         rb.AddForce(destination * playerSettings.launchAttackForce, ForceMode.Impulse);
         rb.AddTorque(destination, ForceMode.Impulse);
+
+        SoundManager.Instance.PlayAudioClip("PlayerLaunch");
     }
 
     /// <summary>
@@ -224,6 +229,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         }
 
         rb.AddForce(Vector3.up * 20, ForceMode.Impulse);
+
+        SoundManager.Instance.PlayAudioClip("PlayerRebound");
 
         characterAttacking = false;
     }
