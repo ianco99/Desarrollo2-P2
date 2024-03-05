@@ -357,6 +357,8 @@ MonoBehaviour:
   cameraPoint: {fileID: 1691113767108639658}
   settings: {fileID: 11400000, guid: d1bd592a28e0a6745ada6e0a85aaca5a, type: 2}
   playerCharacter: {fileID: 1696655024}
+  healthController: {fileID: 3769863437908131883}
+  godModeChannel: {fileID: 11400000, guid: c2decc99e1208934da95fdcf36ce608b, type: 2}
 --- !u!114 &1696655024
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Point for the camera to focus on")]
     [SerializeField] private Transform cameraPoint;
     [SerializeField] private PlayerSettings settings;
-
     [SerializeField] private PlayerCharacter playerCharacter;
+    [SerializeField] private HealthController healthController;
+    [SerializeField] private BoolEventChannel godModeChannel;
 
     private Vector2 moveInput;
 
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private IHookable currentHookTarget;
 
     private bool hooking = false;
+    private bool godMode;
 
     public Action<IAttackable> OnStartAttack;
     public Action<IHookable> OnStartHook;
@@ -31,6 +33,16 @@ public class PlayerController : MonoBehaviour
     public PlayerCharacter PlayerCharacter
     {
         get => playerCharacter;
+    }
+
+    private void Awake()
+    {
+        godModeChannel.Subscribe(GodModeToggle);
+    }
+
+    private void GodModeToggle(bool value)
+    {
+        healthController.SetGodMode(value);
     }
 
     private void Update()

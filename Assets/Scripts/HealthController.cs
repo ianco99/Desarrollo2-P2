@@ -9,6 +9,7 @@ namespace kuznickiAttackables
     {
         public UnityEvent OnDamaged;
         public UnityEvent OnDeath;
+        [SerializeField] private bool godMode = false;
         [SerializeField] private float health;
         public float Health
         {
@@ -22,6 +23,12 @@ namespace kuznickiAttackables
                     OnDeath?.Invoke();
                 }
             }
+        }
+
+
+        public void SetGodMode(bool value)
+        {
+            godMode = value;
         }
 
         public float RecieveDamage(float damage)
