@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+[Serializable]
+struct AudioStruct
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string key;
+    public AudioClip clip;
+}
+public class SoundManager : MonoBehaviourSingleton<SoundManager>
+{
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioStruct[] audioClips;
 
-    // Update is called once per frame
-    void Update()
+    public void PlayAudioClip(string givenKey)
     {
-        
+        for (int i = 0; i < audioClips.Length; i++)
+        {
+            if(audioClips[i].key == givenKey)
+            {
+                audioSource.clip = audioClips[i].clip;
+                audioSource.Play();
+            }
+        }
     }
 }
