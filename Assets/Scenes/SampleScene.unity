@@ -4006,6 +4006,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5799294930963963180, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: Priority
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799294930963963180, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: m_Volume
+      value: 0.427
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799294930963963180, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: MaxDistance
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799294930963963180, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e4d9c1599b3cc154fa58439f10c290da, type: 3}
+    - target: {fileID: 5799294930963963180, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: DopplerLevel
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799294930963963180, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9063884711668694930, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
       propertyPath: m_Name
       value: Enemy
