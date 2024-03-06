@@ -249,6 +249,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         hookJoint.autoConfigureConnectedAnchor = false;
         hookJoint.spring = 9.0f;
         hookJoint.maxDistance = 2.0f;
+        hookJoint.connectedAnchor = Vector3.zero;
 
         lineRenderer.enabled = true;
     }

@@ -24,6 +24,7 @@ public class CheatManager : MonoBehaviourSingleton<CheatManager>
 
     private void OnNextLevelCheat()
     {
+        if(SceneManager.sceneCountInBuildSettings > SceneManager.GetActiveScene().buildIndex+1)
         GameManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex+1);
     }
 

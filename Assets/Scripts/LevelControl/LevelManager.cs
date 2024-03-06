@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using kuznickiEventChannel;
-using static UnityEditor.Progress;
 
 
 public class LevelManager : MonoBehaviour
