@@ -117,7 +117,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         {
             material.color = Color.white;
         }
-        else if(healthController.Health == 0)
+        else if(healthController.Health <= 0)
         {
             material.color = Color.black;
         }
