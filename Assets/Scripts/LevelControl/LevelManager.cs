@@ -19,7 +19,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject[] respawneableObjects;
     [Tooltip("GameObject containing the pause menu")]
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private PlayerControllerEventChannel respawnChannel;
 
     private bool isPaused = false;
 

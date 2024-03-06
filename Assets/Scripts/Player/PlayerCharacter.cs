@@ -11,6 +11,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     [SerializeField] private Material material;
     [SerializeField] private HealthController healthController;
     [SerializeField] private PlayerControllerEventChannel respawnChannel;
+    [SerializeField] private Animator anim;
 
     private PlayerController controller;
 
@@ -141,6 +142,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
                 characterJumping = true;
                 rb.AddForce(Vector3.up * playerSettings.jumpForce, ForceMode.VelocityChange);
 
+                anim.SetTrigger("Jump");
+
                 SoundManager.Instance.PlayAudioClip("PlayerJump");
             }
         }
@@ -225,7 +228,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         if (other != null)
         {
             other.gameObject.GetComponentInParent<ITargetable>()?.SetTargettedState(false);
-            other.gameObject.GetComponentInParent<IAttackable>()?.ReceiveAttack();
+            other.gameObject.GetComponentInParent<HealthController>()?.RecieveDamage(1.0f);
         }
 
         rb.AddForce(Vector3.up * 20, ForceMode.Impulse);

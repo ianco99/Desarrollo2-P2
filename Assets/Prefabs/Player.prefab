@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 1696655024}
   - component: {fileID: 3769863437908131883}
   - component: {fileID: 1691113767424663229}
+  - component: {fileID: 3001012823581453590}
   m_Layer: 4
   m_Name: Player
   m_TagString: Player
@@ -379,6 +380,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: b42c0ec705c4bff4b81e9ba909c7b746, type: 2}
   healthController: {fileID: 3769863437908131883}
   respawnChannel: {fileID: 11400000, guid: 65091c7f2aee94848af156502684db26, type: 2}
+  anim: {fileID: 3001012823581453590}
 --- !u!114 &3769863437908131883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,3 +441,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!95 &3001012823581453590
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691113767424663219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d23c84a36065dab47be032957a6df274, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
