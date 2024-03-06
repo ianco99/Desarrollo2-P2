@@ -65,9 +65,9 @@ public class PlayerController : MonoBehaviour
     private void FeatherFallToggle(bool value)
     {
         if (value)
-            playerCharacter.GetRigidbody().mass = 0.2f;
+            settings.currentFallingMultiplier = settings.FeatherFallMultiplier;
         else
-            playerCharacter.GetRigidbody().mass = 1.0f;
+            settings.currentFallingMultiplier = settings.defaultFallMultiplier;
     }
 
     private void Update()

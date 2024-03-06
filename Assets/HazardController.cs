@@ -1,3 +1,4 @@
+using kuznickiAttackables;
 using kuznickiEventChannel;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,6 @@ public class HazardController : MonoBehaviour
 
     private void InstaKillPlayer(PlayerController playerController)
     {
-        respawnChannel.RaiseEvent(playerController);
+        respawnChannel?.RaiseEvent(playerController);
     }
 }

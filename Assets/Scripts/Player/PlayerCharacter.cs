@@ -177,7 +177,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
                 rb.velocity += Vector3.up * playerSettings.currentFallingMultiplier * Physics.gravity.y * Time.deltaTime;
             }
             else if (rb.velocity.y > 0f && !characterGrounded)
-                rb.velocity += Vector3.up * Physics.gravity.y * (playerSettings.currentLowJumpMultiplier - 1) * Time.deltaTime;
+                rb.velocity += Vector3.up * Physics.gravity.y * (playerSettings.lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
         if (characterJumping)

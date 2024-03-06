@@ -18,7 +18,7 @@ namespace kuznickiAttackables
             {
                 health = value;
 
-                if(health <= 0)
+                if (health <= 0)
                 {
                     OnDeath?.Invoke();
                 }
@@ -33,7 +33,7 @@ namespace kuznickiAttackables
 
         public float RecieveDamage(float damage)
         {
-            if(!godMode)
+            if (!godMode)
             {
                 Health -= damage;
                 OnDamaged?.Invoke();
@@ -49,7 +49,8 @@ namespace kuznickiAttackables
 
         public void Kill()
         {
-            Health = 0;
+            if (godMode)
+                Health = 0;
         }
 
         public void SetHealth(float newHealth)
