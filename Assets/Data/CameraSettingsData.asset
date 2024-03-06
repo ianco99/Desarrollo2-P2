@@ -15,7 +15,7 @@ MonoBehaviour:
   playerPrefKey: ControlScheme
   playerPrefKeyKeyboard: Keyboard
   playerPrefKeyController: Controller
-  controllerYAxisMaxSpeed: 0.1
+  controllerYAxisMaxSpeed: 0.02
   controllerXAxisMaxSpeed: 3
   mouseYAxisMaxSpeed: 0.005
   mouseXAxisMaxSpeed: 0.5

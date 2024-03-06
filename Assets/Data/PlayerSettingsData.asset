@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: PlayerSettingsData
   m_EditorClassIdentifier: 
   defaultSpeed: 30
+  defaultFallMultiplier: 2.5
   currentSpeed: 30
   coyoteTargetTime: 0.3
   jumpForce: 25
   maxHorVelocity: 50
   maxVertVelocity: 25
-  fallingMultiplier: 2.5
+  currentFallingMultiplier: 2.5
   lowJumpMultiplier: 5
   targetLowJumpTimer: 0.1
-  insideDetectionRadius: 10
-  OutsideDetectionRadius: 11
+  insideDetectionRadius: 15
+  OutsideDetectionRadius: 16
   launchAttackForce: 40
-  FeatherFallMass: 0.2
+  FeatherFallMultiplier: 0.2
   FlashSpeed: 60

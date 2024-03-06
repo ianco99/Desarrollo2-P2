@@ -203,7 +203,7 @@ namespace Inputs
                 {
                     ""name"": """",
                     ""id"": ""b692af65-8fdb-4a8e-8755-2a085487d625"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -225,7 +225,7 @@ namespace Inputs
                 {
                     ""name"": """",
                     ""id"": ""466f0205-0595-4765-b070-37be2617e659"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
