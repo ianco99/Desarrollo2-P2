@@ -147,6 +147,7 @@ MonoBehaviour:
   rb: {fileID: 6140379822788680736}
   aimingLine: {fileID: 6285028321855447039}
   healthController: {fileID: 7569026058624422518}
+  respawnChannel: {fileID: 11400000, guid: 65091c7f2aee94848af156502684db26, type: 2}
 --- !u!114 &6140379822788680737
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using kuznickiAttackables;
+using kuznickiEventChannel;
 using Patterns.FSM;
 using System.Collections;
 using UnityEngine;
@@ -18,6 +19,11 @@ public class BeeController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private LineRenderer aimingLine;
     [SerializeField] private HealthController healthController;
+    [SerializeField] private PlayerControllerEventChannel respawnChannel;
+
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+    private Quaternion startModelRotation;
 
     private FiniteStateMachine<BeeStates> fsm;
     private BeeIdleState<BeeStates> idleState;
@@ -27,6 +33,36 @@ public class BeeController : MonoBehaviour
     private void Awake()
     {
         InitFSM();
+        respawnChannel.Subscribe(Respawn);
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+        startModelRotation = model.rotation;
+    }
+
+    private void OnDestroy()
+    {
+        respawnChannel.Unsubscribe(Respawn);
+    }
+
+    private void Respawn(PlayerController controller)
+    {
+        StopAllCoroutines();
+
+        anim.SetTrigger("Flaps");
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.rotation = startRotation;
+
+        transform.SetPositionAndRotation(startPosition, startRotation);
+        
+        gameObject.SetActive(true);
+        
+        model.eulerAngles = Vector3.zero;
+
+
+        fsm.SetCurrentState(idleState);
     }
 
     private void Update()
