@@ -20,6 +20,7 @@ public class BeeController : MonoBehaviour
     [SerializeField] private LineRenderer aimingLine;
     [SerializeField] private HealthController healthController;
     [SerializeField] private PlayerControllerEventChannel respawnChannel;
+    [SerializeField] private float timeTillDeath = 3.0f;
 
     private Vector3 startPosition;
     private Quaternion startRotation;
@@ -29,6 +30,8 @@ public class BeeController : MonoBehaviour
     private BeeIdleState<BeeStates> idleState;
     private BeeAimingState<BeeStates> aimingState;
     private BeeLaunchState<BeeStates> launchState;
+
+    private float DeathUpMultiplier = 5.0f;
 
     private void Awake()
     {
@@ -102,14 +105,14 @@ public class BeeController : MonoBehaviour
     public void Die()
     {
         rb.AddTorque(-rb.velocity);
-        rb.AddForce(-rb.velocity + Vector3.up * 5.0f, ForceMode.Force);
+        rb.AddForce(-rb.velocity + Vector3.up * DeathUpMultiplier, ForceMode.Force);
 
         StartCoroutine(DeathCoroutine());
     }
 
     private IEnumerator DeathCoroutine()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(timeTillDeath);
         gameObject.SetActive(false);
     }
 }

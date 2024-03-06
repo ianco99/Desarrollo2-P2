@@ -55,6 +55,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     {
         Vector3 newForce = -rb.velocity * 2.5f;
         rb.AddForce(newForce, ForceMode.VelocityChange);
+        rb.useGravity = true;
         material.color = Color.white;
 
         SoundManager.Instance.PlayAudioClip("PlayerDamaged");

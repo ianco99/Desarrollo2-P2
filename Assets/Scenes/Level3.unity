@@ -1318,6 +1318,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 449488553}
     m_Modifications:
+    - target: {fileID: 194105290, guid: c5ef4af5761133e48a23225a727cc831, type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 842720547}
     - target: {fileID: 1833308118180439415, guid: c5ef4af5761133e48a23225a727cc831, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1615,6 +1619,11 @@ PrefabInstance:
 --- !u!224 &839045468 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1833308118535588177, guid: c5ef4af5761133e48a23225a727cc831, type: 3}
+  m_PrefabInstance: {fileID: 709783324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &842720547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1833308118191504459, guid: c5ef4af5761133e48a23225a727cc831, type: 3}
   m_PrefabInstance: {fileID: 709783324}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &869282660
@@ -3063,7 +3072,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8688982990593057279, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
       propertyPath: timeToMove
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8688982990593057279, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
       propertyPath: rotateSpeedMultiplier
@@ -3079,7 +3088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063884711668694934, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.149998
+      value: -16.47
       objectReference: {fileID: 0}
     - target: {fileID: 9063884711668694934, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3087,7 +3096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063884711668694934, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 138.54509
+      value: 139.26
       objectReference: {fileID: 0}
     - target: {fileID: 9063884711668694934, guid: 7f7a7326a080cc7419ab8a071b69a2b6, type: 3}
       propertyPath: m_LocalRotation.w
