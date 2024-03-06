@@ -18,11 +18,19 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns a list of all weapons parents
+    /// </summary>
+    /// <returns></returns>
     public List<Transform> GetWeaponParents()
     {
         return weaponParents;
     }
 
+    /// <summary>
+    /// Deals damage with weapon to player
+    /// </summary>
+    /// <param name="playerController"></param>
     private void DealDamage(PlayerController playerController)
     {
         HealthController playerHealth;

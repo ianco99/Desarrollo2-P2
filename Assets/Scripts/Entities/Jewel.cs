@@ -15,6 +15,10 @@ public class Jewel : BaseAttackable
         respawnChannel.Unsubscribe(Respawn);
     }
 
+    /// <summary>
+    /// Called when respawning player
+    /// </summary>
+    /// <param name="controller"></param>
     private void Respawn(PlayerController controller)
     {
         gameObject.SetActive(true);

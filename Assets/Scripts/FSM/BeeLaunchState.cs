@@ -9,6 +9,8 @@ public class BeeLaunchState<T> : BaseState<T>
     private Transform model;
     private Rigidbody rb;
 
+    private float launchForce = 35.0f;
+
     public BeeLaunchState(Animator anim, Transform model, Rigidbody rigidbody, T id, string name) : base(id, name)
     {
         this.anim = anim;
@@ -21,12 +23,11 @@ public class BeeLaunchState<T> : BaseState<T>
         base.OnEnter();
 
         anim.SetTrigger("Launching");
-        rb.AddForce(model.forward * 35.0f, ForceMode.VelocityChange);
+        rb.AddForce(model.forward * launchForce, ForceMode.VelocityChange);
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-       
     }
 }

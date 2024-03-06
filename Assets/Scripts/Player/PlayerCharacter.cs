@@ -24,6 +24,18 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
     private float currentTimeJumping;
     private float coyoteCurrentTime;
+    private float groundedDistance = 0.8f;
+
+    private float defaultHealth = 2.0f;
+    private float timeToDie = 3.0f;
+
+    private float reboundMultiplier = 20.0f;
+
+    private float damagedImpulseMultiplier = 2.5f;
+
+    private float hookSpring = 9.0f;
+    private float hookMaxDistance = 2.0f;
+
 
     private void Awake()
     {
@@ -51,9 +63,12 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         CheckHealth();
     }
 
+    /// <summary>
+    /// Called when damaged
+    /// </summary>
     public void DamagedReaction()
     {
-        Vector3 newForce = -rb.velocity * 2.5f;
+        Vector3 newForce = -rb.velocity * damagedImpulseMultiplier;
         rb.AddForce(newForce, ForceMode.VelocityChange);
         rb.useGravity = true;
         material.color = Color.white;
@@ -61,6 +76,9 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         SoundManager.Instance.PlayAudioClip("PlayerDamaged");
     }
 
+    /// <summary>
+    /// Called on entity death
+    /// </summary>
     public void Die()
     {
         rb.useGravity = false;
@@ -69,19 +87,26 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         StartCoroutine(DeathSequence());
     }
 
+    /// <summary>
+    /// Death sequence
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DeathSequence()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(timeToDie);
         respawnChannel?.RaiseEvent(controller);
     }
 
+    /// <summary>
+    /// Player respawned in level
+    /// </summary>
     public void Respawn()
     {
         rb.rotation = Quaternion.Euler(Vector3.zero);
         rb.velocity = Vector3.zero;
         rb.useGravity = true;
         material.color = Color.cyan;
-        healthController.SetHealth(2.0f);
+        healthController.SetHealth(defaultHealth);
     }
 
     /// <summary>
@@ -91,7 +116,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit, 0.8f))
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, groundedDistance))
         {
             characterGrounded = true;
 
@@ -113,9 +138,12 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
             coyoteCurrentTime += Time.deltaTime;
     }
 
+    /// <summary>
+    /// Change player material depending on current health
+    /// </summary>
     private void CheckHealth()
     {
-        if (healthController.Health == 1)
+        if (healthController.Health == defaultHealth/2.0f)
         {
             material.color = Color.white;
         }
@@ -181,7 +209,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
                 rb.velocity += Vector3.up * playerSettings.currentFallingMultiplier * Physics.gravity.y * Time.deltaTime;
             }
             else if (rb.velocity.y > 0f && !characterGrounded)
-                rb.velocity += Vector3.up * Physics.gravity.y * (playerSettings.lowJumpMultiplier - 1) * Time.deltaTime;
+                rb.velocity += Vector3.up * Physics.gravity.y * playerSettings.lowJumpMultiplier * Time.deltaTime;
         }
 
         if (characterJumping)
@@ -232,7 +260,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
             other.gameObject.GetComponentInParent<HealthController>()?.RecieveDamage(1.0f);
         }
 
-        rb.AddForce(Vector3.up * 20, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * reboundMultiplier, ForceMode.Impulse);
 
         SoundManager.Instance.PlayAudioClip("PlayerRebound");
 
@@ -248,13 +276,17 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         hookJoint.connectedBody = target.GetRigidbody();
         hookJoint.anchor = Vector3.zero;
         hookJoint.autoConfigureConnectedAnchor = false;
-        hookJoint.spring = 9.0f;
-        hookJoint.maxDistance = 2.0f;
+        hookJoint.spring = hookSpring;
+        hookJoint.maxDistance = hookMaxDistance;
         hookJoint.connectedAnchor = Vector3.zero;
 
         lineRenderer.enabled = true;
     }
 
+    /// <summary>
+    /// Draw hook between player and hookpoint
+    /// </summary>
+    /// <param name="endHookPos"></param>
     public void DrawHook(Vector3 endHookPos)
     {
         lineRenderer.SetPosition(0, transform.position);
@@ -268,7 +300,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     {
         rb.AddRelativeTorque(controller.detectionPoint.right * 99999.0f, ForceMode.VelocityChange);
 
-        rb.AddForce(Vector3.up * 20, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * reboundMultiplier, ForceMode.Impulse);
 
         Destroy(hookJoint);
         hookJoint = null;
@@ -306,7 +338,6 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     {
         characterJumping = value;
     }
-
 
     /// <summary>
     /// Rigidbody getter

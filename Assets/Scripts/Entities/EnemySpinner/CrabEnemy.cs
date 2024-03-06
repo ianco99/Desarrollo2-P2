@@ -27,6 +27,11 @@ public class CrabEnemy : MonoBehaviour
     private bool rotatingUp = true;
     private float currentWeaponRotateTime = 0;
 
+    private float defaultHealth = 1.0f;
+
+    private float upDeathMultiplier = 5.0f;
+    private float timeToDie = 3.0f;
+
     private void Start()
     {
         if (!TryGetComponent(out healthController) || !TryGetComponent(out rb))
@@ -52,11 +57,15 @@ public class CrabEnemy : MonoBehaviour
         WeaponMovement();
     }
 
+    /// <summary>
+    /// Called when player is respawned
+    /// </summary>
+    /// <param name="controller"></param>
     private void Respawn(PlayerController controller)
     {
         StopAllCoroutines();
 
-        healthController.SetHealth(1.0f);
+        healthController.SetHealth(defaultHealth);
 
         rb.velocity = Vector3.zero;
         transform.SetPositionAndRotation(startPosition, startRotation);
@@ -71,10 +80,13 @@ public class CrabEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            healthController.RecieveDamage(1);
+            healthController.RecieveDamage(defaultHealth);
         }
     }
 
+    /// <summary>
+    /// Called on update. Moves entity
+    /// </summary>
     private void BodyMovement()
     {
         float normTime = currentMoveTime / timeToMove;
@@ -98,6 +110,9 @@ public class CrabEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called on update. Moves weapons
+    /// </summary>
     private void WeaponMovement()
     {
         float normTime = currentWeaponRotateTime / timeToRotateWeapons;
@@ -128,9 +143,12 @@ public class CrabEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called on entities death
+    /// </summary>
     public void Die()
     {
-        rb.AddForce(Vector3.up * 5.0f, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * upDeathMultiplier, ForceMode.Impulse);
 
         for (int i = 0; i < weaponManager.GetWeaponParents().Count; i++)
         {
@@ -140,9 +158,13 @@ public class CrabEnemy : MonoBehaviour
         StartCoroutine(DeathCoroutine());
     }
 
+    /// <summary>
+    /// Death sequence
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DeathCoroutine()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(timeToDie);
         gameObject.SetActive(false);
     }
 }

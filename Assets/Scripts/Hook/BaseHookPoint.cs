@@ -16,16 +16,27 @@ public class BaseHookPoint : BaseTargetteable, IHookable, ITargetable
         }
     }
 
+    /// <summary>
+    /// On being hooked
+    /// </summary>
     public void RecieveHook()
     {
         onHooked.Invoke();
     }
 
+    /// <summary>
+    /// Returns transform of object
+    /// </summary>
+    /// <returns></returns>
     public Transform GetTransform()
     {
         return transform;
     }
 
+    /// <summary>
+    /// Returns rigidbody of object
+    /// </summary>
+    /// <returns></returns>
     public Rigidbody GetRigidbody()
     {
         return rb;

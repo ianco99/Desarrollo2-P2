@@ -12,8 +12,6 @@ public class SpeedTrigger : MonoBehaviour
         playerTrigger.OnPlayerTrigger += GivePlayerBoost;
     }
 
-    //TODO: Fix - It would be better to just have an OnTriggerEnter in this component, the event will be triggered anyways
-    //I prefer using my player trigger class, since it automates the verification process - this can be discussed
     /// <summary>
     /// Adds currentSpeed boost to player when entering its trigger
     /// </summary>

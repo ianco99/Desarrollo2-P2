@@ -48,6 +48,10 @@ public class BeeController : MonoBehaviour
         respawnChannel.Unsubscribe(Respawn);
     }
 
+    /// <summary>
+    /// Called when respawning player on level
+    /// </summary>
+    /// <param name="controller"></param>
     private void Respawn(PlayerController controller)
     {
         StopAllCoroutines();
@@ -78,6 +82,9 @@ public class BeeController : MonoBehaviour
         fsm.FixedUpdate();
     }
 
+    /// <summary>
+    /// Sets up finite state machine with its states and transitions
+    /// </summary>
     private void InitFSM()
     {
         fsm = new FiniteStateMachine<BeeStates>();
@@ -102,6 +109,9 @@ public class BeeController : MonoBehaviour
         healthController.RecieveDamage(10);
     }
 
+    /// <summary>
+    /// Called on death of entity
+    /// </summary>
     public void Die()
     {
         rb.AddTorque(-rb.velocity);
@@ -110,6 +120,10 @@ public class BeeController : MonoBehaviour
         StartCoroutine(DeathCoroutine());
     }
 
+    /// <summary>
+    /// Waits designated time for death
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DeathCoroutine()
     {
         yield return new WaitForSeconds(timeTillDeath);

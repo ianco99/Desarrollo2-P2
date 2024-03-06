@@ -20,7 +20,7 @@ MonoBehaviour:
   maxHorVelocity: 50
   maxVertVelocity: 25
   currentFallingMultiplier: 2.5
-  lowJumpMultiplier: 5
+  lowJumpMultiplier: 4
   targetLowJumpTimer: 0.1
   insideDetectionRadius: 15
   OutsideDetectionRadius: 16

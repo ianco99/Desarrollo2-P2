@@ -10,6 +10,7 @@ public class BeeAimingState<T> : BaseState<T>
 
     private float timeToAim = 1.0f;
     private float currentTimeToAim = 0.0f;
+    private float overlapRadius = 30.0f;
     private bool readyToLaunch = false;
 
     public bool ReadyToLaunch
@@ -33,7 +34,7 @@ public class BeeAimingState<T> : BaseState<T>
         base.OnUpdate();
         bool lostPlayer = true;
 
-        Collider[] foundCollliders = Physics.OverlapSphere(transform.position, 30.0f, LayerMask.GetMask("Water"));
+        Collider[] foundCollliders = Physics.OverlapSphere(transform.position, overlapRadius, LayerMask.GetMask("Water"));
 
         for (int i = 0; i < foundCollliders.Length; i++)
         {

@@ -8,6 +8,8 @@ public class BeeIdleState<T> : BaseState<T>
     private float timeToMove = 0.5f;
     private float currentTimeToMove = 0.0f;
     private float speed = 75.0f;
+    private float overlapRadius = 30.0f;
+
     private bool movingUp = true;
     private bool foundTarget;
     public bool FoundTarget
@@ -43,7 +45,7 @@ public class BeeIdleState<T> : BaseState<T>
     {
         base.OnUpdate();
 
-        Collider[] sas = Physics.OverlapSphere(rb.position, 30.0f, LayerMask.GetMask("Water"));
+        Collider[] sas = Physics.OverlapSphere(rb.position, overlapRadius, LayerMask.GetMask("Water"));
 
         if (sas.Length > 0)
         {

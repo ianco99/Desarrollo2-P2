@@ -14,6 +14,10 @@ public class HazardController : MonoBehaviour
         hazard.OnPlayerTrigger += InstaKillPlayer;
     }
 
+    /// <summary>
+    /// Respawns player directly
+    /// </summary>
+    /// <param name="playerController"></param>
     private void InstaKillPlayer(PlayerController playerController)
     {
         respawnChannel?.RaiseEvent(playerController);
