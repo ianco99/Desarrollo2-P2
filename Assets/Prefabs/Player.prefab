@@ -359,6 +359,8 @@ MonoBehaviour:
   playerCharacter: {fileID: 1696655024}
   healthController: {fileID: 3769863437908131883}
   godModeChannel: {fileID: 11400000, guid: c2decc99e1208934da95fdcf36ce608b, type: 2}
+  flashModeChannel: {fileID: 11400000, guid: a72c4fd815fb234458c3ecfad2069673, type: 2}
+  featherFallChannel: {fileID: 11400000, guid: 7b8782d20dd0e6c48b25c82f115a76f8, type: 2}
 --- !u!114 &1696655024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +421,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  godMode: 0
   health: 2
 --- !u!54 &1691113767424663229
 Rigidbody:

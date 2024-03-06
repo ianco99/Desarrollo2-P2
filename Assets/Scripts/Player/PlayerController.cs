@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerCharacter playerCharacter;
     [SerializeField] private HealthController healthController;
     [SerializeField] private BoolEventChannel godModeChannel;
+    [SerializeField] private BoolEventChannel flashModeChannel;
+    [SerializeField] private BoolEventChannel featherFallChannel;
 
     private Vector2 moveInput;
 
@@ -38,11 +40,34 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         godModeChannel.Subscribe(GodModeToggle);
+        flashModeChannel.Subscribe(FlashModeToggle);
+        featherFallChannel.Subscribe(FeatherFallToggle);
+    }
+
+    private void OnDestroy()
+    {
+        godModeChannel.Unsubscribe(GodModeToggle);
     }
 
     private void GodModeToggle(bool value)
     {
         healthController.SetGodMode(value);
+    }
+
+    private void FlashModeToggle(bool value)
+    {
+        if (value)
+            settings.currentSpeed = settings.FlashSpeed;
+        else
+            settings.currentSpeed = settings.defaultSpeed;
+    }
+
+    private void FeatherFallToggle(bool value)
+    {
+        if (value)
+            playerCharacter.GetRigidbody().mass = 0.2f;
+        else
+            playerCharacter.GetRigidbody().mass = 1.0f;
     }
 
     private void Update()

@@ -170,14 +170,14 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
         if (rb.useGravity)
         {
-            rb.AddForce(new Vector3(relativeMovement.x * playerSettings.speed, 0.0f, relativeMovement.z * playerSettings.speed), ForceMode.VelocityChange);
+            rb.AddForce(new Vector3(relativeMovement.x * playerSettings.currentSpeed, 0.0f, relativeMovement.z * playerSettings.currentSpeed), ForceMode.VelocityChange);
 
             if (rb.velocity.y < 0.0f)
             {
-                rb.velocity += Vector3.up * playerSettings.fallingMultiplier * Physics.gravity.y * Time.deltaTime;
+                rb.velocity += Vector3.up * playerSettings.currentFallingMultiplier * Physics.gravity.y * Time.deltaTime;
             }
             else if (rb.velocity.y > 0f && !characterGrounded)
-                rb.velocity += Vector3.up * Physics.gravity.y * (playerSettings.lowJumpMultiplier - 1) * Time.deltaTime;
+                rb.velocity += Vector3.up * Physics.gravity.y * (playerSettings.currentLowJumpMultiplier - 1) * Time.deltaTime;
         }
 
         if (characterJumping)

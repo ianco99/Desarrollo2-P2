@@ -16,6 +16,10 @@ public class CheatManager : MonoBehaviourSingleton<CheatManager>
         godMode = false;
         flashMode = false;
         featherFall = false;
+
+        godModeChannel?.RaiseEvent(godMode);
+        flashModeChannel?.RaiseEvent(flashMode);
+        featherFallChannel?.RaiseEvent(featherFall);
     }
 
     private void OnNextLevelCheat()
