@@ -171,7 +171,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
                 characterJumping = true;
                 rb.AddForce(Vector3.up * playerSettings.jumpForce, ForceMode.VelocityChange);
 
-                anim.SetTrigger("Jump");
+                anim.SetTrigger("Impulse");
 
                 SoundManager.Instance.PlayAudioClip("PlayerJump");
             }
@@ -254,6 +254,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
+        anim.SetTrigger("Impulse");
+
         if (other != null)
         {
             other.gameObject.GetComponentInParent<ITargetable>()?.SetTargettedState(false);
@@ -301,6 +303,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         rb.AddRelativeTorque(controller.detectionPoint.right * 99999.0f, ForceMode.VelocityChange);
 
         rb.AddForce(Vector3.up * reboundMultiplier, ForceMode.Impulse);
+        anim.SetTrigger("Impulse");
 
         Destroy(hookJoint);
         hookJoint = null;

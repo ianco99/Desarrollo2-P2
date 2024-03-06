@@ -17300,7 +17300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use LSHIFT-LB-L1 to DASH towards a gem!
+  m_text: Use LSHIFT-RIGHT BUTTON to DASH towards a gem!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6cb5355651a78b44f880baa229d05ca5, type: 2}
   m_sharedMaterial: {fileID: -8505959253768921678, guid: 6cb5355651a78b44f880baa229d05ca5, type: 2}
