@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FeatherFall",
+                    "name": "FeatherFallCheat",
                     "type": "Button",
                     "id": "b07b6820-169c-499f-bf46-3e0d63a18833",
                     "expectedControlType": "Button",
@@ -282,7 +282,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FeatherFall",
+                    "action": "FeatherFallCheat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

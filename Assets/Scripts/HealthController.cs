@@ -33,9 +33,18 @@ namespace kuznickiAttackables
 
         public float RecieveDamage(float damage)
         {
-            Health -= damage;
-            OnDamaged?.Invoke();
+            if(!godMode)
+            {
+                Health -= damage;
+                OnDamaged?.Invoke();
+            }
+
             return Health;
+        }
+
+        public void Heal(float healthToHeal)
+        {
+            Health += healthToHeal;
         }
 
         public void Kill()

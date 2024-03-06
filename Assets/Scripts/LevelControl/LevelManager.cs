@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using kuznickiEventChannel;
+using static UnityEditor.Progress;
 
 
 public class LevelManager : MonoBehaviour
@@ -43,12 +44,12 @@ public class LevelManager : MonoBehaviour
     {
         playerController.transform.position = startingPoint.position;
         playerController.PlayerCharacter.Respawn();
-        
 
-        foreach (var item in respawneableObjects)
+
+        for (int i = 0; i < respawneableObjects.Length; i++)
         {
-            item.SetActive(true);
-            item.GetComponent<ToggleOutline>().SetOutlines(false);
+            respawneableObjects[i].SetActive(true);
+            respawneableObjects[i].GetComponent<ToggleOutline>()?.SetOutlines(false);
         }
     }
 

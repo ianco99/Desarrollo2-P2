@@ -919,6 +919,7 @@ MonoBehaviour:
   moveSpeedMultiplier: 2
   rotateSpeedMultiplier: 100
   weaponManager: {fileID: 1941847355}
+  respawnChannel: {fileID: 11400000, guid: 65091c7f2aee94848af156502684db26, type: 2}
 --- !u!114 &1941847355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,6 +969,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  godMode: 0
   health: 1
 --- !u!82 &5799294930963963180
 AudioSource:

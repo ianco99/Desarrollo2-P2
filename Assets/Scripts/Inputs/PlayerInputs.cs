@@ -102,7 +102,7 @@ namespace Inputs
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""FeatherFall"",
+                    ""name"": ""FeatherFallCheat"",
                     ""type"": ""Button"",
                     ""id"": ""b07b6820-169c-499f-bf46-3e0d63a18833"",
                     ""expectedControlType"": ""Button"",
@@ -306,7 +306,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""FeatherFall"",
+                    ""action"": ""FeatherFallCheat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -492,7 +492,7 @@ namespace Inputs
             m_World_NextLevelCheat = m_World.FindAction("NextLevelCheat", throwIfNotFound: true);
             m_World_GodModeCheat = m_World.FindAction("GodModeCheat", throwIfNotFound: true);
             m_World_FlashCheat = m_World.FindAction("FlashCheat", throwIfNotFound: true);
-            m_World_FeatherFall = m_World.FindAction("FeatherFall", throwIfNotFound: true);
+            m_World_FeatherFallCheat = m_World.FindAction("FeatherFallCheat", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_Selection = m_Menu.FindAction("Selection", throwIfNotFound: true);
@@ -567,7 +567,7 @@ namespace Inputs
         private readonly InputAction m_World_NextLevelCheat;
         private readonly InputAction m_World_GodModeCheat;
         private readonly InputAction m_World_FlashCheat;
-        private readonly InputAction m_World_FeatherFall;
+        private readonly InputAction m_World_FeatherFallCheat;
         public struct WorldActions
         {
             private @PlayerInputs m_Wrapper;
@@ -580,7 +580,7 @@ namespace Inputs
             public InputAction @NextLevelCheat => m_Wrapper.m_World_NextLevelCheat;
             public InputAction @GodModeCheat => m_Wrapper.m_World_GodModeCheat;
             public InputAction @FlashCheat => m_Wrapper.m_World_FlashCheat;
-            public InputAction @FeatherFall => m_Wrapper.m_World_FeatherFall;
+            public InputAction @FeatherFallCheat => m_Wrapper.m_World_FeatherFallCheat;
             public InputActionMap Get() { return m_Wrapper.m_World; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -614,9 +614,9 @@ namespace Inputs
                 @FlashCheat.started += instance.OnFlashCheat;
                 @FlashCheat.performed += instance.OnFlashCheat;
                 @FlashCheat.canceled += instance.OnFlashCheat;
-                @FeatherFall.started += instance.OnFeatherFall;
-                @FeatherFall.performed += instance.OnFeatherFall;
-                @FeatherFall.canceled += instance.OnFeatherFall;
+                @FeatherFallCheat.started += instance.OnFeatherFallCheat;
+                @FeatherFallCheat.performed += instance.OnFeatherFallCheat;
+                @FeatherFallCheat.canceled += instance.OnFeatherFallCheat;
             }
 
             private void UnregisterCallbacks(IWorldActions instance)
@@ -645,9 +645,9 @@ namespace Inputs
                 @FlashCheat.started -= instance.OnFlashCheat;
                 @FlashCheat.performed -= instance.OnFlashCheat;
                 @FlashCheat.canceled -= instance.OnFlashCheat;
-                @FeatherFall.started -= instance.OnFeatherFall;
-                @FeatherFall.performed -= instance.OnFeatherFall;
-                @FeatherFall.canceled -= instance.OnFeatherFall;
+                @FeatherFallCheat.started -= instance.OnFeatherFallCheat;
+                @FeatherFallCheat.performed -= instance.OnFeatherFallCheat;
+                @FeatherFallCheat.canceled -= instance.OnFeatherFallCheat;
             }
 
             public void RemoveCallbacks(IWorldActions instance)
@@ -737,7 +737,7 @@ namespace Inputs
             void OnNextLevelCheat(InputAction.CallbackContext context);
             void OnGodModeCheat(InputAction.CallbackContext context);
             void OnFlashCheat(InputAction.CallbackContext context);
-            void OnFeatherFall(InputAction.CallbackContext context);
+            void OnFeatherFallCheat(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {

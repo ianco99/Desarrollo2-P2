@@ -74,6 +74,6 @@ public class BeeController : MonoBehaviour
     private IEnumerator DeathCoroutine()
     {
         yield return new WaitForSeconds(3.0f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

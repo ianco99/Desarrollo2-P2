@@ -1,4 +1,5 @@
 using kuznickiAttackables;
+using kuznickiEventChannel;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,10 @@ public class CrabEnemy : MonoBehaviour
     [SerializeField] private float moveSpeedMultiplier;
     [SerializeField] private float rotateSpeedMultiplier;
     [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private PlayerControllerEventChannel respawnChannel;
+
+    private Vector3 startPosition;
+    private Quaternion startRotation;
 
     private Rigidbody rb;
     private HealthController healthController;
@@ -29,6 +34,16 @@ public class CrabEnemy : MonoBehaviour
             Debug.LogError(gameObject.name + " needs a " + nameof(HealthController) + " and a Rigidbody to work properly!");
             gameObject.SetActive(false);
         }
+
+        respawnChannel?.Subscribe(Respawn);
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+    }
+
+    private void OnDestroy()
+    {
+        respawnChannel?.Unsubscribe(Respawn);
     }
 
     private void Update()
@@ -37,9 +52,24 @@ public class CrabEnemy : MonoBehaviour
         WeaponMovement();
     }
 
+    private void Respawn(PlayerController controller)
+    {
+        StopAllCoroutines();
+
+        healthController.SetHealth(1.0f);
+
+        rb.velocity = Vector3.zero;
+        transform.SetPositionAndRotation(startPosition, startRotation);
+
+        for (int i = 0; i < weaponManager.GetWeaponParents().Count; i++)
+        {
+            weaponManager.GetWeaponParents()[i].gameObject.SetActive(true);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             healthController.RecieveDamage(1);
         }
@@ -79,19 +109,15 @@ public class CrabEnemy : MonoBehaviour
 
             if (rotatingUp)
             {
-                newRotation -= new Vector3(rotateSpeed,0, 0 ) * rotateSpeedMultiplier * Time.deltaTime;
-                //model.localEulerAngles = newRotation;
+                newRotation -= new Vector3(rotateSpeed, 0, 0) * rotateSpeedMultiplier * Time.deltaTime;
                 weaponManager.GetWeaponParents()[i].Rotate(newRotation, Space.Self);
             }
             else
             {
                 newRotation += new Vector3(rotateSpeed, 0, 0) * rotateSpeedMultiplier * Time.deltaTime;
-                //model.localEulerAngles = newRotation;
                 weaponManager.GetWeaponParents()[i].Rotate(newRotation, Space.Self);
             }
         }
-
-
 
         currentWeaponRotateTime += Time.deltaTime;
 
@@ -110,13 +136,13 @@ public class CrabEnemy : MonoBehaviour
         {
             weaponManager.GetWeaponParents()[i].gameObject.SetActive(false);
         }
-        
+
         StartCoroutine(DeathCoroutine());
     }
 
     private IEnumerator DeathCoroutine()
     {
         yield return new WaitForSeconds(3.0f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
