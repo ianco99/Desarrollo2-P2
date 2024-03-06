@@ -73,6 +73,42 @@ namespace Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NextLevelCheat"",
+                    ""type"": ""Button"",
+                    ""id"": ""79ea3271-c9be-43c4-a5ac-386a29942639"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GodModeCheat"",
+                    ""type"": ""Button"",
+                    ""id"": ""89bb3ca7-8cab-443f-80c2-538c2f3e6cd4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FlashCheat"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b1b625b-f36b-4c61-be19-16228743f040"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FeatherFall"",
+                    ""type"": ""Button"",
+                    ""id"": ""b07b6820-169c-499f-bf46-3e0d63a18833"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -238,6 +274,50 @@ namespace Inputs
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eacc0556-596b-4d95-9be2-39ea41fe338a"",
+                    ""path"": ""<Keyboard>/f9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextLevelCheat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36b2a2f3-cec7-4a8f-8d7f-0194511466ce"",
+                    ""path"": ""<Keyboard>/f10"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GodModeCheat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""463759cc-402d-4c4a-b4d2-51d0057727a2"",
+                    ""path"": ""<Keyboard>/f12"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FeatherFall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1933a4e-68bb-431f-84ad-e2c73911f541"",
+                    ""path"": ""<Keyboard>/f11"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FlashCheat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -409,6 +489,10 @@ namespace Inputs
             m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
             m_World_Pause = m_World.FindAction("Pause", throwIfNotFound: true);
             m_World_Hook = m_World.FindAction("Hook", throwIfNotFound: true);
+            m_World_NextLevelCheat = m_World.FindAction("NextLevelCheat", throwIfNotFound: true);
+            m_World_GodModeCheat = m_World.FindAction("GodModeCheat", throwIfNotFound: true);
+            m_World_FlashCheat = m_World.FindAction("FlashCheat", throwIfNotFound: true);
+            m_World_FeatherFall = m_World.FindAction("FeatherFall", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_Selection = m_Menu.FindAction("Selection", throwIfNotFound: true);
@@ -480,6 +564,10 @@ namespace Inputs
         private readonly InputAction m_World_Attack;
         private readonly InputAction m_World_Pause;
         private readonly InputAction m_World_Hook;
+        private readonly InputAction m_World_NextLevelCheat;
+        private readonly InputAction m_World_GodModeCheat;
+        private readonly InputAction m_World_FlashCheat;
+        private readonly InputAction m_World_FeatherFall;
         public struct WorldActions
         {
             private @PlayerInputs m_Wrapper;
@@ -489,6 +577,10 @@ namespace Inputs
             public InputAction @Attack => m_Wrapper.m_World_Attack;
             public InputAction @Pause => m_Wrapper.m_World_Pause;
             public InputAction @Hook => m_Wrapper.m_World_Hook;
+            public InputAction @NextLevelCheat => m_Wrapper.m_World_NextLevelCheat;
+            public InputAction @GodModeCheat => m_Wrapper.m_World_GodModeCheat;
+            public InputAction @FlashCheat => m_Wrapper.m_World_FlashCheat;
+            public InputAction @FeatherFall => m_Wrapper.m_World_FeatherFall;
             public InputActionMap Get() { return m_Wrapper.m_World; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -513,6 +605,18 @@ namespace Inputs
                 @Hook.started += instance.OnHook;
                 @Hook.performed += instance.OnHook;
                 @Hook.canceled += instance.OnHook;
+                @NextLevelCheat.started += instance.OnNextLevelCheat;
+                @NextLevelCheat.performed += instance.OnNextLevelCheat;
+                @NextLevelCheat.canceled += instance.OnNextLevelCheat;
+                @GodModeCheat.started += instance.OnGodModeCheat;
+                @GodModeCheat.performed += instance.OnGodModeCheat;
+                @GodModeCheat.canceled += instance.OnGodModeCheat;
+                @FlashCheat.started += instance.OnFlashCheat;
+                @FlashCheat.performed += instance.OnFlashCheat;
+                @FlashCheat.canceled += instance.OnFlashCheat;
+                @FeatherFall.started += instance.OnFeatherFall;
+                @FeatherFall.performed += instance.OnFeatherFall;
+                @FeatherFall.canceled += instance.OnFeatherFall;
             }
 
             private void UnregisterCallbacks(IWorldActions instance)
@@ -532,6 +636,18 @@ namespace Inputs
                 @Hook.started -= instance.OnHook;
                 @Hook.performed -= instance.OnHook;
                 @Hook.canceled -= instance.OnHook;
+                @NextLevelCheat.started -= instance.OnNextLevelCheat;
+                @NextLevelCheat.performed -= instance.OnNextLevelCheat;
+                @NextLevelCheat.canceled -= instance.OnNextLevelCheat;
+                @GodModeCheat.started -= instance.OnGodModeCheat;
+                @GodModeCheat.performed -= instance.OnGodModeCheat;
+                @GodModeCheat.canceled -= instance.OnGodModeCheat;
+                @FlashCheat.started -= instance.OnFlashCheat;
+                @FlashCheat.performed -= instance.OnFlashCheat;
+                @FlashCheat.canceled -= instance.OnFlashCheat;
+                @FeatherFall.started -= instance.OnFeatherFall;
+                @FeatherFall.performed -= instance.OnFeatherFall;
+                @FeatherFall.canceled -= instance.OnFeatherFall;
             }
 
             public void RemoveCallbacks(IWorldActions instance)
@@ -618,6 +734,10 @@ namespace Inputs
             void OnAttack(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
             void OnHook(InputAction.CallbackContext context);
+            void OnNextLevelCheat(InputAction.CallbackContext context);
+            void OnGodModeCheat(InputAction.CallbackContext context);
+            void OnFlashCheat(InputAction.CallbackContext context);
+            void OnFeatherFall(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {

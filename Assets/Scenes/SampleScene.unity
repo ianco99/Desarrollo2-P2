@@ -249,7 +249,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37905786}
-  m_LocalRotation: {x: 0.048877902, y: 0.39017978, z: -0.020747432, w: 0.9192063}
+  m_LocalRotation: {x: 0.048877902, y: 0.39017975, z: -0.020747429, w: 0.9192063}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2327,7 +2327,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045063255}
-  m_LocalRotation: {x: 0.13921645, y: 0.3862365, z: -0.05909385, w: 0.9099165}
+  m_LocalRotation: {x: 0.13921647, y: 0.3862365, z: -0.05909385, w: 0.9099165}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3875,6 +3875,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7651211308050016720, guid: ac8d31f8bfe546441ab2de6300626901, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7651211308050016733, guid: ac8d31f8bfe546441ab2de6300626901, type: 3}
       propertyPath: m_Name
       value: CheatManager

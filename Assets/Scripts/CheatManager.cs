@@ -6,7 +6,7 @@ public class CheatManager : MonoBehaviourSingleton<CheatManager>
 {
     [SerializeField] private BoolEventChannel godModeChannel;
     [SerializeField] private bool godMode = false;
-    private void OnNextLevel()
+    private void OnNextLevelCheat()
     {
         GameManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex+1);
     }
@@ -14,5 +14,6 @@ public class CheatManager : MonoBehaviourSingleton<CheatManager>
     private void OnGodMode()
     {
         godMode = !godMode;
+        godModeChannel.RaiseEvent(godMode);
     }
 }
