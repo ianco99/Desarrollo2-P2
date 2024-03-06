@@ -247,7 +247,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
         hookJoint.connectedBody = target.GetRigidbody();
         hookJoint.anchor = Vector3.zero;
         hookJoint.autoConfigureConnectedAnchor = false;
-        hookJoint.spring = 3.0f;
+        hookJoint.spring = 9.0f;
         hookJoint.maxDistance = 2.0f;
 
         lineRenderer.enabled = true;
