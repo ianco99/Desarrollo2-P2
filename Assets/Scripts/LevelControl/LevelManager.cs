@@ -59,6 +59,7 @@ public class LevelManager : MonoBehaviour
         if (isPaused)
         {
             Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
         }
@@ -67,6 +68,7 @@ public class LevelManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
+            Cursor.visible = false;
         }
     }
 
