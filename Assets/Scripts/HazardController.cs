@@ -7,7 +7,7 @@ using UnityEngine;
 public class HazardController : MonoBehaviour
 {
     [SerializeField] private PlayerTriggerDetector hazard;
-    [SerializeField] private PlayerControllerEventChannel respawnChannel;
+    [SerializeField] private PlayerCharacterEventChannel respawnChannel;
 
     private void Start()
     {
@@ -18,8 +18,8 @@ public class HazardController : MonoBehaviour
     /// Respawns player directly
     /// </summary>
     /// <param name="playerController"></param>
-    private void InstaKillPlayer(PlayerController playerController)
+    private void InstaKillPlayer(PlayerCharacter playerCharacter)
     {
-        respawnChannel?.RaiseEvent(playerController);
+        respawnChannel?.RaiseEvent(playerCharacter);
     }
 }

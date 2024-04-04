@@ -15,9 +15,9 @@ public class SpeedTrigger : MonoBehaviour
     /// <summary>
     /// Adds currentSpeed boost to player when entering its trigger
     /// </summary>
-    /// <param name="controller"></param>
-    private void GivePlayerBoost(PlayerController controller)
+    /// <param name="playerCharacter">Character to boost</param>
+    private void GivePlayerBoost(PlayerCharacter playerCharacter)
     {
-        controller.PlayerCharacter.AddSpeed(transform.forward,speedBoost);
+        playerCharacter.AddForce(transform.forward,speedBoost);
     }
 }

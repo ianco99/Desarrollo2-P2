@@ -319,7 +319,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     /// </summary>
     /// <param name="direction"></param>
     /// <param name="speedBoost"></param>
-    public void AddSpeed(Vector3 direction, float speedBoost)
+    public void AddForce(Vector3 direction, float speedBoost, ForceMode forceMode = ForceMode.Impulse)
     {
         rb.AddForce(direction * speedBoost, ForceMode.Impulse);
     }

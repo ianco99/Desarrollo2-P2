@@ -30,12 +30,12 @@ public class WeaponManager : MonoBehaviour
     /// <summary>
     /// Deals damage with weapon to player
     /// </summary>
-    /// <param name="playerController"></param>
-    private void DealDamage(PlayerController playerController)
+    /// <param name="playerCharacter"></param>
+    private void DealDamage(PlayerCharacter playerCharacter)
     {
         HealthController playerHealth;
 
-        if(playerController.gameObject.TryGetComponent(out playerHealth))
+        if(playerCharacter.gameObject.TryGetComponent(out playerHealth))
         {
             playerHealth.RecieveDamage(damageToDeal);
         }

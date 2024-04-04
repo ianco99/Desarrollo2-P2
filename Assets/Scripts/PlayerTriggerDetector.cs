@@ -6,36 +6,36 @@ using UnityEngine.Events;
 
 public class PlayerTriggerDetector : MonoBehaviour
 {
-    public Action<PlayerController> OnPlayerTrigger;
-    public Action<PlayerController> OnPlayerTriggerExit;
+    public Action<PlayerCharacter> OnPlayerTrigger;
+    public Action<PlayerCharacter> OnPlayerTriggerExit;
 
-    [SerializeField] private UnityEvent<PlayerController> OnPlayerTriggerEvent;
+    [SerializeField] private UnityEvent<PlayerCharacter> OnPlayerTriggerEvent;
 
 
     private void Awake()
     {
-        OnPlayerTrigger += (PlayerController controller) => { OnPlayerTriggerEvent?.Invoke(controller); };
+        OnPlayerTrigger += (controller) => { OnPlayerTriggerEvent?.Invoke(controller); };
     }
 
     private void OnDestroy()
     {
-        OnPlayerTrigger -= (PlayerController controller) => { OnPlayerTriggerEvent?.Invoke(controller); };
+        OnPlayerTrigger -= (controller) => { OnPlayerTriggerEvent?.Invoke(controller); };
     }
 
     private void OnTriggerEnter(Collider other)
     {
         
-        if(other.TryGetComponent<PlayerController>(out PlayerController playerController))
+        if(other.TryGetComponent(out PlayerCharacter playerCharacter))
         {
-            OnPlayerTrigger?.Invoke(playerController);
+            OnPlayerTrigger?.Invoke(playerCharacter);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<PlayerController>(out PlayerController playerController))
+        if (other.TryGetComponent(out PlayerCharacter playerCharacter))
         {
-            OnPlayerTriggerExit?.Invoke(other.GetComponent<PlayerController>());
+            OnPlayerTriggerExit?.Invoke(playerCharacter);
         }
     }
 }
