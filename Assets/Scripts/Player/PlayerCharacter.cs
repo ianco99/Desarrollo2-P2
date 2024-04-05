@@ -22,6 +22,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
     private int jumpCount = 1;
 
+    private float currentAccelerationTime = 0;
     private float currentTimeJumping;
     private float coyoteCurrentTime;
     private float groundedDistance = 0.8f;
@@ -143,11 +144,11 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     /// </summary>
     private void CheckHealth()
     {
-        if (healthController.Health == defaultHealth/2.0f)
+        if (healthController.Health == defaultHealth / 2.0f)
         {
             material.color = Color.white;
         }
-        else if(healthController.Health <= 0)
+        else if (healthController.Health <= 0)
         {
             material.color = Color.black;
         }
@@ -176,7 +177,6 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
                 SoundManager.Instance.PlayAudioClip("PlayerJump");
             }
         }
-
     }
 
     /// <summary>
@@ -185,28 +185,20 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
     /// <param name="relativeMovement"></param>
     public void Move(Vector3 relativeMovement)
     {
-        if (Mathf.Abs(rb.velocity.z) > playerSettings.maxHorVelocity)
-        {
-            relativeMovement = Vector3.zero;
-        }
-
-        if (Mathf.Abs(rb.velocity.x) > playerSettings.maxHorVelocity)
-        {
-            relativeMovement = Vector3.zero;
-        }
-
-        if (Mathf.Abs(rb.velocity.y) > playerSettings.maxVertVelocity)
-        {
-            relativeMovement = Vector3.zero;
-        }
+        if (characterGrounded)
+            relativeMovement /= 2.0f;
+        
+        VelocityCap(relativeMovement);
 
         if (rb.useGravity)
         {
-            rb.AddForce(new Vector3(relativeMovement.x * playerSettings.currentSpeed, 0.0f, relativeMovement.z * playerSettings.currentSpeed), ForceMode.VelocityChange);
+            HorizontalMovement(relativeMovement);
 
+            //Vertical movement
             if (rb.velocity.y < 0.0f)
             {
-                rb.velocity += Vector3.up * playerSettings.currentFallingMultiplier * Physics.gravity.y * Time.deltaTime;
+                rb.velocity += Vector3.up * playerSettings.currentFallingMultiplier * Physics.gravity.y *
+                               Time.deltaTime;
             }
             else if (rb.velocity.y > 0f && !characterGrounded)
                 rb.velocity += Vector3.up * Physics.gravity.y * playerSettings.lowJumpMultiplier * Time.deltaTime;
@@ -214,6 +206,34 @@ public class PlayerCharacter : MonoBehaviour, ICharacter
 
         if (characterJumping)
             currentTimeJumping += Time.deltaTime;
+    }
+
+    private void VelocityCap(Vector3 relativeMovement)
+    {
+        if (Mathf.Abs(rb.velocity.z) > playerSettings.maxHorVelocity)
+        {
+            relativeMovement.z = 0;
+        }
+
+        if (Mathf.Abs(rb.velocity.x) > playerSettings.maxHorVelocity)
+        {
+            relativeMovement.x = 0;
+        }
+
+        if (Mathf.Abs(rb.velocity.y) > playerSettings.maxVertVelocity)
+        {
+            relativeMovement.y = 0;
+        }
+    }
+
+    private void HorizontalMovement(Vector3 relativeMovement)
+    {
+        float normTime = currentAccelerationTime / playerSettings.timeToFullAcceleration;
+        float accelerationSpeed = playerSettings.accelerationCurve.Evaluate(normTime);
+        
+        rb.AddForce(new Vector3(relativeMovement.x * playerSettings.currentSpeed,
+            0.0f,
+            relativeMovement.z * playerSettings.currentSpeed), ForceMode.VelocityChange);
     }
 
     /// <summary>

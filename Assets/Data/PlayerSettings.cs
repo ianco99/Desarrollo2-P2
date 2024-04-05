@@ -5,6 +5,7 @@ public class PlayerSettings : ScriptableObject
 {
     [Header("Default Settings")]
     public float defaultSpeed = 10.0f;
+    public float defaultFullAcceleration = 10.0f;
     public float defaultFallMultiplier = 2.5f;
 
     [Header("MovementSettings")]
@@ -16,6 +17,8 @@ public class PlayerSettings : ScriptableObject
     public float currentFallingMultiplier = 2.5f;
     public float lowJumpMultiplier = 5.0f;
     public float targetLowJumpTimer = 1.0f;
+    public float timeToFullAcceleration = 2.0f;
+    public AnimationCurve accelerationCurve;
 
     [Header("DetectionSettings")]
     public float insideDetectionRadius;
